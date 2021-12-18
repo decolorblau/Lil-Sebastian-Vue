@@ -12,9 +12,27 @@
         <button class="board-panel-header__button" @click="onClickElement('horseshoe')">
           HORSESHOE
         </button>
+        <button class="board-panel-header__button" @click="onClickElement('hairComb')">
+          HAIRCOMB
+        </button>
+
+        <div class="board-panel-header__divider">||</div>
+
+        <button class="board-panel-header__button" @click="onClickElement2('carrot')">
+          CARROT
+        </button>
+        <button class="board-panel-header__button" @click="onClickElement2('hay')">HAY</button>
+        <button class="board-panel-header__button" @click="onClickElement2('horseshoe')">
+          HORSESHOE
+        </button>
+        <button class="board-panel-header__button" @click="onClickElement2('hairComb')">
+          HAIRCOMB
+        </button>
       </div>
     </div>
-    <p class="board-panel__user-input">array.map(cosas)</p>
+
+    <p class="board-panel__user-input">Data: {{ this.method }}{{ this.element }}</p>
+    <p>Resultado: {{ this.answerArray }}</p>
 
     <p>La pista</p>
 
@@ -42,20 +60,21 @@ export default defineComponent({
     return {
       method: "",
       element: "",
+      element2: "",
     };
   },
   computed: {
     ...mapState(["answerArray", "exerciseIndex"]),
   },
   methods: {
-    ...mapActions(["newArray"]),
+    ...mapActions(["newAnswer"]),
     onClickMethod(method) {
       this.element = "";
+      this.element2 = "";
 
       switch (method) {
         case "push":
           this.method = "push";
-
           break;
         case "filter":
           this.method = "filter";
@@ -66,14 +85,6 @@ export default defineComponent({
         default:
           this.method = "iIiIiIiIiIi";
           break;
-      }
-      if (this.method && this.element) {
-        const currentExercise = exercises[this.exerciseIndex].initialArray;
-
-        if (this.method === "push") {
-          currentExercise.push(this.element);
-          this.newArray(currentExercise);
-        }
       }
     },
     onClickElement(element) {
@@ -92,6 +103,77 @@ export default defineComponent({
           break;
         default:
           this.element = "iIiIiIiIiIi";
+          break;
+      }
+
+      switch (this.method) {
+        case "push":
+          if (this.element !== "iIiIiIiIiIi") {
+            const currentExercise = exercises[this.exerciseIndex].initialArray;
+
+            currentExercise.push(this.element);
+            this.newAnswer(currentExercise);
+          }
+          break;
+        case "filter":
+          console.log("holiiins");
+          if (this.element !== "iIiIiIiIiIi") {
+            let currentExercise = exercises[this.exerciseIndex].initialArray;
+
+            currentExercise = currentExercise.filter((item) => item.name === this.element.name);
+            this.newAnswer(currentExercise);
+          }
+          break;
+        case "map":
+          this.method = "map";
+          break;
+        default:
+          this.method = "iIiIiIiIiIi";
+          break;
+      }
+    },
+    onClickElement2(element) {
+      switch (element) {
+        case "carrot":
+          this.element2 = carrot;
+          break;
+        case "hay":
+          this.element2 = hay;
+          break;
+        case "horseshoe":
+          this.element2 = horseshoe;
+          break;
+        case "hairComb":
+          this.element2 = hairComb;
+          break;
+        default:
+          this.element2 = "iIiIiIiIiIi";
+          break;
+      }
+
+      switch (this.method) {
+        case "push":
+          if (this.method && this.element) {
+            const currentExercise = exercises[this.exerciseIndex].initialArray;
+
+            currentExercise.push(this.element);
+            this.newAnswer(currentExercise);
+          }
+          break;
+        case "filter":
+          console.log("holiiins");
+          if (this.element !== "iIiIiIiIiIi") {
+            let currentExercise = exercises[this.exerciseIndex].initialArray;
+
+            currentExercise = currentExercise.filter((item) => item.name === this.element.name);
+            this.newAnswer(currentExercise);
+          }
+          break;
+        case "map":
+          this.method = "map";
+          break;
+        default:
+          this.method = "iIiIiIiIiIi";
           break;
       }
     },
