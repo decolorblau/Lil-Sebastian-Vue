@@ -1,24 +1,37 @@
+
+
 <template>
   <section class="board-panel">
     <div class="board-panel-header">
       <div class="board-panel-header__methods">
+
         <button class="board-panel-header__button-method" @click="onClickMethod('filter')">
           .filter
         </button>
         <button class="board-panel-header__button-method" @click="onClickMethod('find')">
+
           .find
         </button>
-        <button class="board-panel-header__button-method" @click="onClickMethod('map')">
+        <button
+          class="board-panel-header__button-method"
+          @click="onClickMethod('map')"
+        >
           .map
         </button>
+
         <button class="board-panel-header__button-method" @click="onClickMethod('pop')">
+
           .pop
         </button>
-        <button class="board-panel-header__button-method" @click="onClickMethod('push')">
+        <button
+          class="board-panel-header__button-method"
+          @click="onClickMethod('push')"
+        >
           .push
         </button>
       </div>
       <div class="board-panel-header__elements">
+
         <div class="firstInput">
           <button class="board-panel-header__button" @click="onClickElement('carrot')">
             <img class="board-panel-header__image" src="../assets/carrot.png" alt="carrot" />
@@ -63,9 +76,10 @@
     </div>
 
     <p class="board-panel__user-input">Data: {{ this.method }}{{ this.element }}</p>
+
     <p>Resultado: {{ this.answerArray }}</p>
 
-    <p>La pista</p>
+    <p>{{ exercises[this.exerciseIndex].instructions }}</p>
 
     <div class="board-panel-footer__buttons">
       <button
@@ -97,6 +111,7 @@ export default defineComponent({
       method: "",
       element: "",
       element2: "",
+      exercises,
     };
   },
   computed: {
@@ -156,7 +171,9 @@ export default defineComponent({
           if (this.element !== "iIiIiIiIiIi") {
             let currentExercise = exercises[this.exerciseIndex].initialArray;
 
-            currentExercise = currentExercise.filter((item) => item.name === this.element.name);
+            currentExercise = currentExercise.filter(
+              (item) => item.name === this.element.name
+            );
             this.newAnswer(currentExercise);
           }
           break;
@@ -201,7 +218,9 @@ export default defineComponent({
           if (this.element !== "iIiIiIiIiIi") {
             let currentExercise = exercises[this.exerciseIndex].initialArray;
 
-            currentExercise = currentExercise.filter((item) => item.name === this.element.name);
+            currentExercise = currentExercise.filter(
+              (item) => item.name === this.element.name
+            );
             this.newAnswer(currentExercise);
           }
           break;
@@ -218,6 +237,9 @@ export default defineComponent({
       this.method = "";
     },
     onClickNext() {},
+  },
+  mounted() {
+    console.log(exercises);
   },
 });
 </script>
