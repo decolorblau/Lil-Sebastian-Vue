@@ -28,7 +28,7 @@ const exercises = [
   {
     method: ["find"],
     task: "Take the brush and comb Lil Sebastian",
-    introductions:
+    instructions:
       "An array can contain many elements, and sometimes we'll need to use only one of them according to a specific condition. That is when we use the method 'find'.",
     initialArray: [carrot, horseshoe, hairComb, hay],
     expectedArray: [hairComb],
