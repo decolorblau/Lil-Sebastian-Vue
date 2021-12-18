@@ -1,36 +1,82 @@
 <template>
   <section class="board-panel">
-    <header class="board-panel-header">
+    <div class="board-panel-header">
       <div class="board-panel-header__methods">
-        <button class="board-panel-header__button" @click="onClickMethod('push')">PUSH</button>
-        <button class="board-panel-header__button" @click="onClickMethod('filter')">FILTER</button>
-        <button class="board-panel-header__button" @click="onClickMethod('map')">MAP</button>
-      </div>
-      <div class="board-panel-header__elements">
-        <button class="board-panel-header__button" @click="onClickElement('carrot')">CARROT</button>
-        <button class="board-panel-header__button" @click="onClickElement('hay')">HAY</button>
-        <button class="board-panel-header__button" @click="onClickElement('horseshoe')">
-          HORSESHOE
+        <button class="board-panel-header__button-method" @click="onClickMethod('filter')">
+          .filter
+        </button>
+        <button class="board-panel-header__button-method" @click="onClickMethod('push')">
+          .find
+        </button>
+        <button class="board-panel-header__button-method" @click="onClickMethod('map')">
+          .map
+        </button>
+        <button class="board-panel-header__button-method" @click="onClickMethod('push')">
+          .pop
+        </button>
+        <button class="board-panel-header__button-method" @click="onClickMethod('push')">
+          .push
         </button>
       </div>
-    </header>
-    <p class="board-panel__user-input" />
+      <div class="board-panel-header__elements">
+        <button class="board-panel-header__button" @click="onClickElement('carrot')">
+          <img class="board-panel-header__image" src="../assets/carrot.png" alt="carrot" />
+        </button>
+        <button class="board-panel-header__button" @click="onClickElement('hay')">
+          <img class="board-panel-header__image" src="../assets/hay.png" alt="hay" />
+        </button>
+        <button class="board-panel-header__button" @click="onClickElement('horseshoe')">
+          <img class="board-panel-header__image" src="../assets/horseshoe.png" alt="hay" />
+        </button>
+        <button class="board-panel-header__button" @click="onClickElement('hair-comb')">
+          <img class="board-panel-header__image" src="../assets/hair-comb.png" alt="hair-comb" />
+        </button>
+        <button class="board-panel-header__button" @click="onClickElement('hairComb')">
+          HAIRCOMB
+        </button>
+
+        <div class="board-panel-header__divider">||</div>
+
+        <button class="board-panel-header__button" @click="onClickElement2('carrot')">
+          CARROT
+        </button>
+        <button class="board-panel-header__button" @click="onClickElement2('hay')">HAY</button>
+        <button class="board-panel-header__button" @click="onClickElement2('horseshoe')">
+          HORSESHOE
+        </button>
+        <button class="board-panel-header__button" @click="onClickElement2('hairComb')">
+          HAIRCOMB
+        </button>
+      </div>
+    </div>
+
+    <p class="board-panel__user-input">Data: {{ this.method }}{{ this.element }}</p>
+    <p>Resultado: {{ this.answerArray }}</p>
+
     <p>La pista</p>
 
-    <footer>
-      <button class="board-panel-footer__button" @click="onClickClear">CLEAR</button>
+    <div class="board-panel-footer__buttons">
+      <button
+        class="board-panel-footer__button board-panel-footer__button--clear"
+        @click="onClickClear"
+      >
+        clear
+      </button>
       <button
         class="board-panel-footer__button board-panel-footer__button--next"
         @click="onClickNext"
       >
-        ->
+        >
       </button>
-    </footer>
+    </div>
   </section>
 </template>
 
 <script>
 import { defineComponent } from "vue";
+import { mapActions, mapState } from "vuex";
+import exercises from "@/utils/exercises";
+import { carrot, horseshoe, hay, hairComb } from "@/utils/itemObjects";
 
 export default defineComponent({
   name: "BoardPanel",
@@ -38,10 +84,18 @@ export default defineComponent({
     return {
       method: "",
       element: "",
+      element2: "",
     };
   },
+  computed: {
+    ...mapState(["answerArray", "exerciseIndex"]),
+  },
   methods: {
+    ...mapActions(["newAnswer"]),
     onClickMethod(method) {
+      this.element = "";
+      this.element2 = "";
+
       switch (method) {
         case "push":
           this.method = "push";
@@ -60,23 +114,158 @@ export default defineComponent({
     onClickElement(element) {
       switch (element) {
         case "carrot":
-          this.element = "carrot";
+          this.element = carrot;
           break;
         case "hay":
-          this.element = "hay";
+          this.element = hay;
           break;
         case "horseshoe":
-          this.element = "horseshoe";
+          this.element = horseshoe;
+          break;
+        case "hairComb":
+          this.element = hairComb;
           break;
         default:
           this.element = "iIiIiIiIiIi";
           break;
       }
+
+      switch (this.method) {
+        case "push":
+          if (this.element !== "iIiIiIiIiIi") {
+            const currentExercise = exercises[this.exerciseIndex].initialArray;
+
+            currentExercise.push(this.element);
+            this.newAnswer(currentExercise);
+          }
+          break;
+        case "filter":
+          console.log("holiiins");
+          if (this.element !== "iIiIiIiIiIi") {
+            let currentExercise = exercises[this.exerciseIndex].initialArray;
+
+            currentExercise = currentExercise.filter((item) => item.name === this.element.name);
+            this.newAnswer(currentExercise);
+          }
+          break;
+        case "map":
+          this.method = "map";
+          break;
+        default:
+          this.method = "iIiIiIiIiIi";
+          break;
+      }
     },
-    // onClickClear,
-    // onClickNext,
+    onClickElement2(element) {
+      switch (element) {
+        case "carrot":
+          this.element2 = carrot;
+          break;
+        case "hay":
+          this.element2 = hay;
+          break;
+        case "horseshoe":
+          this.element2 = horseshoe;
+          break;
+        case "hairComb":
+          this.element2 = hairComb;
+          break;
+        default:
+          this.element2 = "iIiIiIiIiIi";
+          break;
+      }
+
+      switch (this.method) {
+        case "push":
+          if (this.method && this.element) {
+            const currentExercise = exercises[this.exerciseIndex].initialArray;
+
+            currentExercise.push(this.element);
+            this.newAnswer(currentExercise);
+          }
+          break;
+        case "filter":
+          console.log("holiiins");
+          if (this.element !== "iIiIiIiIiIi") {
+            let currentExercise = exercises[this.exerciseIndex].initialArray;
+
+            currentExercise = currentExercise.filter((item) => item.name === this.element.name);
+            this.newAnswer(currentExercise);
+          }
+          break;
+        case "map":
+          this.method = "map";
+          break;
+        default:
+          this.method = "iIiIiIiIiIi";
+          break;
+      }
+    },
+    onClickClear() {
+      this.element = "";
+      this.method = "";
+    },
+    onClickNext() {},
   },
 });
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.board-panel {
+  font-family: monospace;
+  background-color: #ffe5d9;
+  height: 100%;
+  width: 500px;
+  margin: 0 auto;
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  position: relative;
+  &-header {
+    display: flex;
+    flex-direction: column;
+    &__elements {
+      background-color: #f8edeb;
+    }
+    &__button-method {
+      width: 80px;
+      height: 40px;
+      background-color: #fec89a;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      font-family: inherit;
+      margin: 10px;
+    }
+    &__button {
+      border: none;
+      background-color: transparent;
+      cursor: pointer;
+      margin: 10px;
+    }
+    &__image {
+      width: 35px;
+      height: 35px;
+    }
+  }
+  &__user-input {
+    background-color: #f8edeb;
+    margin: 20px;
+    padding: 20px;
+    font-size: 20px;
+  }
+  &-footer__buttons {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+  }
+  &-footer__button {
+    border: none;
+    margin-left: 10px;
+    font-family: inherit;
+    font-size: 20px;
+    padding: 10px;
+    background-color: #d8e2dc;
+    border-radius: 50px;
+  }
+}
+</style>

@@ -3,8 +3,9 @@
 
   <ul class="panel" v-if="isAnswer === true">
     <li v-for="element in this.answerArray" v-bind:key="element.name" class="panel__image">
-      <img :src="element.url" :alt="element.name" width="30" height="30" />
+      <img :src="element.url" :alt="element.name" width="60" height="60" />
     </li>
+    <li v-if="answerArray.length < 5" class="panel__image"></li>
   </ul>
 
   <ul class="panel" v-else>
@@ -12,10 +13,11 @@
       <img
         :src="require(`@/assets/${element.name}.png`)"
         :alt="element.name"
-        width="30"
-        height="30"
+        width="45"
+        height="45"
       />
     </li>
+    <li v-if="expectedArray.length < 5" class="panel__image"></li>
   </ul>
 </template>
 
@@ -44,5 +46,19 @@ export default defineComponent({
 <style lang="scss">
 li {
   list-style: none;
+}
+
+.panel {
+  display: flex;
+  height: 80px;
+  padding: 0 10px;
+
+  &__image {
+    width: 80px;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 }
 </style>

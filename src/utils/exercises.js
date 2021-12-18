@@ -33,6 +33,10 @@ const exercises = [
         url: "@/assets/hay.png",
         name: "hay",
       },
+      {
+        url: "@/assets/carrot.png",
+        name: "carrot",
+      },
     ],
   },
   {
