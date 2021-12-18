@@ -3,7 +3,12 @@
 
   <ul class="panel" v-if="isAnswer === true">
     <li v-for="element in this.answerArray" v-bind:key="element.name" class="panel__image">
-      <img :src="element.url" :alt="element.name" width="60" height="60" />
+      <img
+        :src="require(`@/assets/${element.name}.png`)"
+        :alt="element.name"
+        width="60"
+        height="60"
+      />
     </li>
     <li v-if="this.answerArray.length < 5" class="panel__image"></li>
   </ul>
@@ -52,6 +57,8 @@ li {
   display: flex;
   padding: 0 10px;
   height: 100%;
+  align-items: center;
+  justify-content: center;
 
   &__image {
     width: 80px;

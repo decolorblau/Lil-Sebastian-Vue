@@ -17,6 +17,10 @@ const exercises = [
         url: "@/assets/hair-comb.png",
         name: "hair-comb",
       },
+      {
+        url: "@/assets/hay.png",
+        name: "hay",
+      },
     ],
     expectedArray: [
       {
