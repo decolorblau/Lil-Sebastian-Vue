@@ -298,6 +298,7 @@ export default defineComponent({
       this.element = "";
       this.element2 = "";
       this.method = "";
+      this.activeBtn = "";
     },
     onClickClear() {
       this.clear();
