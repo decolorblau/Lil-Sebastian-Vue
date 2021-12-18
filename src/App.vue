@@ -35,6 +35,8 @@
   flex-direction: column;
   align-items: center;
   background-color: #d8e2dc;
+  color: #4a261c;
+
 }
 .logo {
   &__image {
