@@ -26,18 +26,15 @@
 header {
   height: 100px;
   width: 100%;
-  background-color: blue;
   display: flex;
 }
 
 footer {
   width: 100%;
   height: 50px;
-  background-color: yellow;
 }
 
 .container {
-  background-color: orange;
   height: calc(100vh - 150px);
   display: flex;
   flex-direction: row;

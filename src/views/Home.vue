@@ -3,8 +3,12 @@
     <BoardPanel />
   </div>
   <div class="board board--viewpanel">
-    <Array array="" />
-    <Array array="" />
+    <div class="array array--answer">
+      <Array :isAnswer="true" />
+    </div>
+    <div class="array array--expected">
+      <Array :isAnswer="false" />
+    </div>
   </div>
 </template>
 
