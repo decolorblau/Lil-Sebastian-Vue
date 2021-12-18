@@ -64,10 +64,10 @@
     </div>
 
     <p class="board-panel__user-input">
-      console : lilArray.{{ this.method }}(<img
-        v-if="this.element.name"
+      Data: lilArray.{{ this.elementMethod }}(<img
+        v-if="this.elementImage !== ''"
         class="board-panel__user-input--image"
-        :src="require(`@/assets/${this.element.name}.png`)"
+        :src="require(`@/assets/${this.elementImage}.png`)"
         :alt="this.element.name"
         width="30"
         height="30"
@@ -123,6 +123,8 @@ export default defineComponent({
       method: "",
       element: "",
       element2: "",
+      elementImage: "",
+      elementMethod: "",
       exercises,
     };
   },
@@ -134,6 +136,8 @@ export default defineComponent({
     onClickMethod(method) {
       this.element = "";
       this.element2 = "";
+      this.elementImage = "";
+      this.elementMethod = "";
       let currentExercise;
 
       switch (method) {
@@ -147,6 +151,7 @@ export default defineComponent({
           this.method = "map";
           break;
         case "pop":
+          this.method = "pop";
           currentExercise = [...exercises[this.exerciseIndex].initialArray];
           currentExercise.pop();
           this.newAnswer(currentExercise);
@@ -159,20 +164,29 @@ export default defineComponent({
           this.method = "iIiIiIiIiIi";
           break;
       }
+      this.elementMethod = this.method;
     },
     onClickElement(element) {
       switch (element) {
         case "carrot":
           this.element = carrot;
+          this.elementImage = carrot.name;
+          console.log(this.elementImage);
           break;
         case "hay":
           this.element = hay;
+          this.elementImage = hay.name;
+          console.log(this.elementImage);
           break;
         case "horseshoe":
           this.element = horseshoe;
+          this.elementImage = horseshoe.name;
+          console.log(this.elementImage);
           break;
         case "hairComb":
           this.element = hairComb;
+          this.elementImage = hairComb.name;
+          console.log(this.elementImage);
           break;
         default:
           this.element = "";
@@ -214,9 +228,7 @@ export default defineComponent({
           if (this.element !== "iIiIiIiIiIi") {
             let currentExercise = exercises[this.exerciseIndex].initialArray;
 
-            currentExercise = currentExercise.find(
-              (item) => item.name === this.element.name
-            );
+            currentExercise = currentExercise.find((item) => item.name === this.element.name);
 
             this.newAnswer(currentExercise);
             this.clear();
