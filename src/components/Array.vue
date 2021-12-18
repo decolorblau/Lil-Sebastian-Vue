@@ -32,20 +32,15 @@ import exercises from "../utils/exercises";
 export default defineComponent({
   name: "Array",
   props: ["isAnswer"],
-  data() {
-    return {
-      expectedArray: [],
-      // answerArray: this.answerArray,
-    };
-  },
   computed: {
-    ...mapState(["exerciseIndex", "answerArray"]),
+    ...mapState(["exerciseIndex", "answerArray", "expectedArray"]),
   },
   methods: {
-    ...mapActions(["newAnswer"]),
+    ...mapActions(["newAnswer", "loadExpectedArray"]),
   },
   mounted() {
-    this.expectedArray = exercises[this.exerciseIndex].expectedArray;
+    this.loadExpectedArray(exercises[this.exerciseIndex].expectedArray);
+    console.log(this.expectedArray);
     this.newAnswer(exercises[this.exerciseIndex].initialArray);
   },
 });
