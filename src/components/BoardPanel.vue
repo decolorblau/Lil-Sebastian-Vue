@@ -155,6 +155,7 @@ export default defineComponent({
 
             currentExercise.push(this.element);
             this.newAnswer(currentExercise);
+            this.clear();
           }
           break;
         case "filter":
@@ -163,6 +164,7 @@ export default defineComponent({
 
             currentExercise = currentExercise.filter((item) => item.name === this.element.name);
             this.newAnswer(currentExercise);
+            this.clear();
           }
           break;
         case "map":
@@ -173,6 +175,7 @@ export default defineComponent({
               item.name === this.element.name ? this.element2 : item
             );
             this.newAnswer(currentExercise);
+            this.clear();
           }
           break;
         default:
@@ -206,15 +209,20 @@ export default defineComponent({
           item.name === this.element.name ? this.element2 : item
         );
         this.newAnswer(currentExercise);
+        this.clear();
       }
     },
-    onClickClear() {
+    clear() {
       this.element = "";
       this.method = "";
+    },
+    onClickClear() {
+      this.clear();
       this.newAnswer([]);
     },
     onClickNext() {
-      this.onClickClear();
+      this.clear();
+      this.newAnswer([]);
       this.nextExercise();
     },
   },
