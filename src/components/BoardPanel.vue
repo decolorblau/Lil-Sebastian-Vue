@@ -2,17 +2,16 @@
   <section class="board-panel">
     <div class="board-panel-header">
       <div class="board-panel-header__methods">
-
         <button class="board-panel-header__button-method" @click="onClickMethod('filter')">
           .filter
         </button>
-        <button class="board-panel-header__button-method" @click="onClickMethod('push')">
+        <button class="board-panel-header__button-method" @click="onClickMethod('find')">
           .find
         </button>
         <button class="board-panel-header__button-method" @click="onClickMethod('map')">
           .map
         </button>
-        <button class="board-panel-header__button-method" @click="onClickMethod('push')">
+        <button class="board-panel-header__button-method" @click="onClickMethod('pop')">
           .pop
         </button>
         <button class="board-panel-header__button-method" @click="onClickMethod('push')">
@@ -20,38 +19,48 @@
         </button>
       </div>
       <div class="board-panel-header__elements">
-        <button class="board-panel-header__button" @click="onClickElement('carrot')">
-          <img class="board-panel-header__image" src="../assets/carrot.png" alt="carrot" />
-        </button>
-        <button class="board-panel-header__button" @click="onClickElement('hay')">
-          <img class="board-panel-header__image" src="../assets/hay.png" alt="hay" />
-        </button>
-        <button class="board-panel-header__button" @click="onClickElement('horseshoe')">
-          <img class="board-panel-header__image" src="../assets/horseshoe.png" alt="hay" />
-        </button>
-        <button class="board-panel-header__button" @click="onClickElement('hair-comb')">
-          <img class="board-panel-header__image" src="../assets/hair-comb.png" alt="hair-comb" />
-        </button>
-        <button class="board-panel-header__button" @click="onClickElement('hairComb')">
-          HAIRCOMB
-        </button>
-
-        <div class="board-panel-header__divider">||</div>
-
-        <button class="board-panel-header__button" @click="onClickElement2('carrot')">
-          CARROT
-        </button>
-        <button class="board-panel-header__button" @click="onClickElement2('hay')">HAY</button>
-        <button class="board-panel-header__button" @click="onClickElement2('horseshoe')">
-
-          HORSESHOE
-        </button>
-        <button class="board-panel-header__button" @click="onClickElement2('hairComb')">
-          HAIRCOMB
-        </button>
+        <div class="firstInput">
+          <button class="board-panel-header__button" @click="onClickElement('carrot')">
+            <img class="board-panel-header__image" src="../assets/carrot.png" alt="carrot" />
+          </button>
+          <button class="board-panel-header__button" @click="onClickElement('hay')">
+            <img class="board-panel-header__image" src="../assets/hay.png" alt="hay" />
+          </button>
+          <button class="board-panel-header__button" @click="onClickElement('horseshoe')">
+            <img class="board-panel-header__image" src="../assets/horseshoe.png" alt="horseshoe" />
+          </button>
+          <button class="board-panel-header__button" @click="onClickElement('hairComb')">
+            <img class="board-panel-header__image" src="../assets/hair-comb.png" alt="hair-comb" />
+          </button>
+        </div>
+        <div class="secondInput disabled">
+          <button
+            class="board-panel-header__button board-panel-header__button--2"
+            @click="onClickElement2('carrot')"
+          >
+            <img class="board-panel-header__image" src="../assets/carrot.png" alt="carrot" />
+          </button>
+          <button
+            class="board-panel-header__button board-panel-header__button--2"
+            @click="onClickElement2('hay')"
+          >
+            <img class="board-panel-header__image" src="../assets/hay.png" alt="hay" />
+          </button>
+          <button
+            class="board-panel-header__button board-panel-header__button--2"
+            @click="onClickElement2('horseshoe')"
+          >
+            <img class="board-panel-header__image" src="../assets/horseshoe.png" alt="horseshoe" />
+          </button>
+          <button
+            class="board-panel-header__button board-panel-header__button--2"
+            @click="onClickElement2('hairComb')"
+          >
+            <img class="board-panel-header__image" src="../assets/hair-comb.png" alt="hair-comb" />
+          </button>
+        </div>
       </div>
     </div>
-
 
     <p class="board-panel__user-input">Data: {{ this.method }}{{ this.element }}</p>
     <p>Resultado: {{ this.answerArray }}</p>
@@ -64,7 +73,6 @@
         @click="onClickClear"
       >
         clear
-
       </button>
       <button
         class="board-panel-footer__button board-panel-footer__button--next"
@@ -224,11 +232,13 @@ export default defineComponent({
   border-radius: 10px;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   position: relative;
+  color: #4a261c;
   &-header {
     display: flex;
     flex-direction: column;
     &__elements {
       background-color: #f8edeb;
+      display: flex;
     }
     &__button-method {
       width: 80px;
@@ -238,13 +248,18 @@ export default defineComponent({
       border-radius: 50px;
       cursor: pointer;
       font-family: inherit;
+      color: inherit;
       margin: 10px;
+    }
+    .disabled {
+      opacity: 0.3;
     }
     &__button {
       border: none;
       background-color: transparent;
       cursor: pointer;
       margin: 10px;
+      color: inherit;
     }
     &__image {
       width: 35px;
@@ -265,6 +280,7 @@ export default defineComponent({
   &-footer__button {
     border: none;
     margin-left: 10px;
+    color: inherit;
     font-family: inherit;
     font-size: 20px;
     padding: 10px;
@@ -273,4 +289,3 @@ export default defineComponent({
   }
 }
 </style>
-

@@ -29,6 +29,7 @@
 #app {
   height: 100vh;
   width: 100vw;
+  color: #4a261c;
 }
 .logo {
   border-radius: 50px;
