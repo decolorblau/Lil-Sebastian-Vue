@@ -2,7 +2,6 @@
   <section class="board-panel">
     <div class="board-panel-header">
       <div class="board-panel-header__methods">
-
         <button
           class="board-panel-header__button-method"
           @click="onClickMethod('filter'), (activeBtn = 'filter')"
@@ -37,7 +36,6 @@
           @click="onClickMethod('push'), (activeBtn = 'push')"
           :class="{ active: activeBtn === 'push' }"
         >
-
           .push
         </button>
       </div>
@@ -153,7 +151,6 @@ export default defineComponent({
     };
   },
   computed: {
-
     ...mapState(["answerArray", "exerciseIndex", "isCorrect"]),
 
     activeClass() {
@@ -161,10 +158,15 @@ export default defineComponent({
         active: this.isActive,
       };
     },
-
   },
   methods: {
-    ...mapActions(["newAnswer", "nextExercise", "beforeExercise", "loadExpectedArray", "toggleCorrect"]),
+    ...mapActions([
+      "newAnswer",
+      "nextExercise",
+      "beforeExercise",
+      "loadExpectedArray",
+      "toggleCorrect",
+    ]),
     onClickMethod(method) {
       this.element = "";
       this.element2 = "";
@@ -197,6 +199,7 @@ export default defineComponent({
           break;
       }
       this.elementMethod = this.method;
+      this.compareArrays();
     },
     onClickElement(element) {
       switch (element) {
@@ -315,6 +318,7 @@ export default defineComponent({
       this.clear();
       this.newAnswer(exercises[this.exerciseIndex].initialArray);
       this.loadExpectedArray(exercises[this.exerciseIndex].expectedArray);
+      this.toggleCorrect();
     },
     onClickBefore() {
       this.beforeExercise();
