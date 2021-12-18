@@ -232,6 +232,7 @@ export default defineComponent({
   border-radius: 10px;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   position: relative;
+  color: #4a261c;
   &-header {
     display: flex;
     flex-direction: column;
@@ -247,13 +248,18 @@ export default defineComponent({
       border-radius: 50px;
       cursor: pointer;
       font-family: inherit;
+      color: inherit;
       margin: 10px;
+    }
+    .disabled {
+      opacity: 0.3;
     }
     &__button {
       border: none;
       background-color: transparent;
       cursor: pointer;
       margin: 10px;
+      color: inherit;
     }
     &__image {
       width: 35px;
@@ -274,6 +280,7 @@ export default defineComponent({
   &-footer__button {
     border: none;
     margin-left: 10px;
+    color: inherit;
     font-family: inherit;
     font-size: 20px;
     padding: 10px;
