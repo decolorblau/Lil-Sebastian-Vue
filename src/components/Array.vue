@@ -8,7 +8,7 @@
         height="60"
       />
     </li>
-    <!-- <li v-for="number in 5 - answerArray.length" :key="number.id" class="panel__image"></li> -->
+    <li v-for="number in 5 - answerArray.length" :key="number.id" class="panel__image"></li>
   </ul>
 
   <ul class="panel" v-else>
@@ -20,7 +20,7 @@
         height="45"
       />
     </li>
-    <!-- <li v-for="number in 5 - expectedArray.length" v-bind:key="number.id" class="panel__image"></li> -->
+    <li v-for="number in 5 - expectedArray.length" v-bind:key="number.id" class="panel__image"></li>
   </ul>
 </template>
 
