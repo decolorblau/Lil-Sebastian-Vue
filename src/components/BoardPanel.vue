@@ -64,11 +64,10 @@
     </div>
 
     <p class="board-panel__user-input">Data: {{ this.method }}{{ this.element }}</p>
-    <<<<<<< HEAD
+
     <p>Method: {{ this.method }}</p>
     <p>Element: {{ this.element }}</p>
     <p>Element2: {{ this.element2 }}</p>
-    ======= >>>>>>> 14259673414e40bb33022cbf20175ab81d484853
     <p>Resultado: {{ this.answerArray }}</p>
 
     <p>{{ exercises[this.exerciseIndex].instructions }}</p>
@@ -110,7 +109,7 @@ export default defineComponent({
     ...mapState(["answerArray", "exerciseIndex"]),
   },
   methods: {
-    ...mapActions(["newAnswer"]),
+    ...mapActions(["newAnswer", "nextExercise"]),
     onClickMethod(method) {
       this.element = "";
       this.element2 = "";
@@ -214,10 +213,10 @@ export default defineComponent({
       this.method = "";
       this.newAnswer([]);
     },
-    onClickNext() {},
-  },
-  mounted() {
-    console.log(exercises);
+    onClickNext() {
+      this.onClickClear();
+      this.nextExercise();
+    },
   },
 });
 </script>
