@@ -2,6 +2,7 @@
   <section class="board-panel">
     <div class="board-panel-header">
       <div class="board-panel-header__methods">
+
         <button class="board-panel-header__button-method" @click="onClickMethod('filter')">
           .filter
         </button>
@@ -42,6 +43,7 @@
         </button>
         <button class="board-panel-header__button" @click="onClickElement2('hay')">HAY</button>
         <button class="board-panel-header__button" @click="onClickElement2('horseshoe')">
+
           HORSESHOE
         </button>
         <button class="board-panel-header__button" @click="onClickElement2('hairComb')">
@@ -49,6 +51,7 @@
         </button>
       </div>
     </div>
+
 
     <p class="board-panel__user-input">Data: {{ this.method }}{{ this.element }}</p>
     <p>Resultado: {{ this.answerArray }}</p>
@@ -61,6 +64,7 @@
         @click="onClickClear"
       >
         clear
+
       </button>
       <button
         class="board-panel-footer__button board-panel-footer__button--next"
@@ -269,3 +273,4 @@ export default defineComponent({
   }
 }
 </style>
+
