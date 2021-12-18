@@ -14,8 +14,18 @@
         </button>
       </div>
     </header>
-    <input type="text" />
-    <p>Holiiiins</p>
+    <p class="board-panel__user-input" />
+    <p>La pista</p>
+
+    <footer>
+      <button class="board-panel-footer__button" @click="onClickClear">CLEAR</button>
+      <button
+        class="board-panel-footer__button board-panel-footer__button--next"
+        @click="onClickNext"
+      >
+        ->
+      </button>
+    </footer>
   </section>
 </template>
 
@@ -52,6 +62,8 @@ export default defineComponent({
           break;
       }
     },
+    onClickClear,
+    onClickNext,
   },
 });
 </script>
