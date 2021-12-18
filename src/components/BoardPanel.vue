@@ -74,9 +74,9 @@ export default defineComponent({
           break;
       }
     },
-    onClickClear(){
-      this.element="",
-      this.method=""
+    onClickClear() {
+      this.element = "";
+      this.method = "";
     },
     // onClickNext,
   },
