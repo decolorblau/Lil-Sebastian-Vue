@@ -74,7 +74,10 @@ export default defineComponent({
           break;
       }
     },
-    // onClickClear,
+    onClickClear(){
+      this.element="",
+      this.method=""
+    },
     // onClickNext,
   },
 });
