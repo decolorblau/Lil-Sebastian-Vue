@@ -1,8 +1,6 @@
 <template>
-  <!-- <pre>{{ JSON.stringify(this.exercise, null, 2) }}</pre> -->
-
   <ul class="panel" v-if="isAnswer === true">
-    <li v-for="element in this.answerArray" v-bind:key="element.name" class="panel__image">
+    <li v-for="(element, index) in answerArray" :key="index" class="panel__image">
       <img
         :src="require(`@/assets/${element.name}.png`)"
         :alt="element.name"
@@ -10,11 +8,11 @@
         height="60"
       />
     </li>
-    <li v-if="this.answerArray.length < 5" class="panel__image"></li>
+    <!-- <li v-for="number in 5 - answerArray.length" :key="number.id" class="panel__image"></li> -->
   </ul>
 
   <ul class="panel" v-else>
-    <li v-for="element in expectedArray" v-bind:key="element.name" class="panel__image">
+    <li v-for="element in expectedArray" :key="element.name" class="panel__image">
       <img
         :src="require(`@/assets/${element.name}.png`)"
         :alt="element.name"
@@ -22,13 +20,13 @@
         height="45"
       />
     </li>
-    <li v-if="expectedArray.length < 5" class="panel__image"></li>
+    <!-- <li v-for="number in 5 - expectedArray.length" v-bind:key="number.id" class="panel__image"></li> -->
   </ul>
 </template>
 
 <script>
 import { defineComponent } from "vue";
-import { mapState } from "vuex";
+import { mapActions, mapState } from "vuex";
 import exercises from "../utils/exercises";
 
 export default defineComponent({
@@ -36,14 +34,19 @@ export default defineComponent({
   props: ["isAnswer"],
   data() {
     return {
-      expectedArray: "",
+      expectedArray: [],
+      // answerArray: this.answerArray,
     };
   },
   computed: {
     ...mapState(["exerciseIndex", "answerArray"]),
   },
+  methods: {
+    ...mapActions(["newAnswer"]),
+  },
   mounted() {
     this.expectedArray = exercises[this.exerciseIndex].expectedArray;
+    this.newAnswer(exercises[this.exerciseIndex].initialArray);
   },
 });
 </script>
