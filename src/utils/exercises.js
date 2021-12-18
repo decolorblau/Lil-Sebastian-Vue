@@ -29,7 +29,6 @@ const exercises = [
     method: ["find"],
     task: "Take the brush and comb Lil Sebastian.",
     introductions:
-
       "An array can contain many elements, and sometimes we'll need to use only one of them according to a specific condition. That is when we use the method 'find'.",
     initialArray: [carrot, horseshoe, hairComb, hay],
     expectedArray: [hairComb],
@@ -39,7 +38,7 @@ const exercises = [
     task: "Lil Sebastian needs new shoes.",
     instructions:
       "In ocations, we'll need to change each of the elements of an array into something else, obtaining a new array. This is when we use the 'map' method. Let's see how it works.",
-    initialArray: [horseshoe, hay, carrot, hairComb],
+    initialArray: [horseshoe, hay, hay, hay],
     expectedArray: [horseshoe, horseshoe, horseshoe, horseshoe],
   },
 ];
