@@ -2,20 +2,40 @@
   <section class="board-panel">
     <div class="board-panel-header">
       <div class="board-panel-header__methods">
-        <button class="board-panel-header__button-method" @click="onClickMethod('filter')">
+        <button
+          class="board-panel-header__button-method"
+          @click="onClickMethod('filter'), (activeBtn = 'filter')"
+          :class="{ active: activeBtn === 'filter' }"
+        >
           .filter
         </button>
-        <button class="board-panel-header__button-method" @click="onClickMethod('find')">
+        <button
+          class="board-panel-header__button-method"
+          @click="onClickMethod('find'), (activeBtn = 'find')"
+          :class="{ active: activeBtn === 'find' }"
+        >
           .find
         </button>
-        <button class="board-panel-header__button-method" @click="onClickMethod('map')">
+        <button
+          class="board-panel-header__button-method"
+          @click="onClickMethod('map'), (activeBtn = 'map')"
+          :class="{ active: activeBtn === 'map' }"
+        >
           .map
         </button>
 
-        <button class="board-panel-header__button-method" @click="onClickMethod('pop')">
+        <button
+          class="board-panel-header__button-method"
+          @click="onClickMethod('pop'), (activeBtn = 'pop')"
+          :class="{ active: activeBtn === 'pop' }"
+        >
           .pop
         </button>
-        <button class="board-panel-header__button-method" @click="onClickMethod('push')">
+        <button
+          class="board-panel-header__button-method"
+          @click="onClickMethod('push'), (activeBtn = 'push')"
+          :class="{ active: activeBtn === 'push' }"
+        >
           .push
         </button>
       </div>
@@ -126,10 +146,18 @@ export default defineComponent({
       elementImage: "",
       elementMethod: "",
       exercises,
+      isActive: false,
+      activeBtn: "",
     };
   },
   computed: {
     ...mapState(["answerArray", "exerciseIndex"]),
+
+    activeClass() {
+      return {
+        active: this.isActive,
+      };
+    },
   },
   methods: {
     ...mapActions(["newAnswer", "nextExercise", "beforeExercise"]),
@@ -318,6 +346,10 @@ export default defineComponent({
       font-family: inherit;
       color: inherit;
       margin: 10px;
+
+      &.active {
+        background: #996538;
+      }
     }
     .disabled {
       opacity: 0.3;
