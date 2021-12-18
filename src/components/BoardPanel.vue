@@ -2,20 +2,42 @@
   <section class="board-panel">
     <div class="board-panel-header">
       <div class="board-panel-header__methods">
-        <button class="board-panel-header__button-method" @click="onClickMethod('filter')">
+
+        <button
+          class="board-panel-header__button-method"
+          @click="onClickMethod('filter'), (activeBtn = 'filter')"
+          :class="{ active: activeBtn === 'filter' }"
+        >
           .filter
         </button>
-        <button class="board-panel-header__button-method" @click="onClickMethod('find')">
+        <button
+          class="board-panel-header__button-method"
+          @click="onClickMethod('find'), (activeBtn = 'find')"
+          :class="{ active: activeBtn === 'find' }"
+        >
           .find
         </button>
-        <button class="board-panel-header__button-method" @click="onClickMethod('map')">
+        <button
+          class="board-panel-header__button-method"
+          @click="onClickMethod('map'), (activeBtn = 'map')"
+          :class="{ active: activeBtn === 'map' }"
+        >
           .map
         </button>
 
-        <button class="board-panel-header__button-method" @click="onClickMethod('pop')">
+        <button
+          class="board-panel-header__button-method"
+          @click="onClickMethod('pop'), (activeBtn = 'pop')"
+          :class="{ active: activeBtn === 'pop' }"
+        >
           .pop
         </button>
-        <button class="board-panel-header__button-method" @click="onClickMethod('push')">
+        <button
+          class="board-panel-header__button-method"
+          @click="onClickMethod('push'), (activeBtn = 'push')"
+          :class="{ active: activeBtn === 'push' }"
+        >
+
           .push
         </button>
       </div>
@@ -102,7 +124,7 @@
       <button
         class="board-panel-footer__button board-panel-footer__button--next"
         @click="onClickNext"
-        :disabled="exerciseIndex >= exercises.length - 1"
+        :class="{ disabled: !isCorrect }"
       >
         &gt;
       </button>
@@ -126,13 +148,23 @@ export default defineComponent({
       elementImage: "",
       elementMethod: "",
       exercises,
+      isActive: false,
+      activeBtn: "",
     };
   },
   computed: {
-    ...mapState(["answerArray", "exerciseIndex"]),
+
+    ...mapState(["answerArray", "exerciseIndex", "isCorrect"]),
+
+    activeClass() {
+      return {
+        active: this.isActive,
+      };
+    },
+
   },
   methods: {
-    ...mapActions(["newAnswer", "nextExercise", "beforeExercise"]),
+    ...mapActions(["newAnswer", "nextExercise", "beforeExercise", "toggleCorrect"]),
     onClickMethod(method) {
       this.element = "";
       this.element2 = "";
@@ -238,6 +270,7 @@ export default defineComponent({
           this.method = "";
           break;
       }
+      this.compareArrays();
     },
     onClickElement2(element) {
       switch (element) {
@@ -270,6 +303,7 @@ export default defineComponent({
     },
     clear() {
       this.element = "";
+      this.element2 = "";
       this.method = "";
     },
     onClickClear() {
@@ -286,6 +320,14 @@ export default defineComponent({
       this.newAnswer(exercises[this.exerciseIndex].initialArray);
       this.beforeExercise();
     },
+    compareArrays() {
+      if (
+        JSON.stringify(this.answerArray) ===
+        JSON.stringify(this.exercises[this.exerciseIndex].expectedArray)
+      ) {
+        this.toggleCorrect();
+      }
+    },
   },
 });
 </script>
@@ -301,6 +343,11 @@ export default defineComponent({
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   position: relative;
   color: #4a261c;
+  .disabled {
+    opacity: 0.3;
+    user-select: none;
+    cursor: default;
+  }
   &-header {
     display: flex;
     flex-direction: column;
@@ -318,10 +365,12 @@ export default defineComponent({
       font-family: inherit;
       color: inherit;
       margin: 10px;
+
+      &.active {
+        background: #996538;
+      }
     }
-    .disabled {
-      opacity: 0.3;
-    }
+
     &__button {
       border: none;
       background-color: transparent;
@@ -365,6 +414,7 @@ export default defineComponent({
     padding: 10px;
     background-color: #d8e2dc;
     border-radius: 50px;
+    cursor: pointer;
   }
 }
 </style>

@@ -39,7 +39,7 @@ export default defineComponent({
     };
   },
   computed: {
-    ...mapState(["exerciseIndex", "answerArray"]),
+    ...mapState(["exerciseIndex", "answerArray", "isCorrect"]),
   },
   methods: {
     ...mapActions(["newAnswer"]),
