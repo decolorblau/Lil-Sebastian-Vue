@@ -64,7 +64,7 @@
     </div>
 
     <p class="board-panel__user-input">
-      Data: lilArray.{{ this.method }}(<img
+      console : lilArray.{{ this.method }}(<img
         v-if="this.element.name"
         class="board-panel__user-input--image"
         :src="require(`@/assets/${this.element.name}.png`)"
@@ -79,7 +79,9 @@
     <p>Element2: {{ this.element2 }}</p>
     <p>Resultado: {{ this.answerArray }}</p>
 
-    <p>{{ exercises[this.exerciseIndex].instructions }}</p>
+    <p class="board-panel__instructions">
+      {{ exercises[this.exerciseIndex].instructions }}
+    </p>
     <p>La pista</p>
     <p>{{ this.exercises[this.exerciseIndex].initialArray }}</p>
 
@@ -92,9 +94,17 @@
       </button>
       <button
         class="board-panel-footer__button board-panel-footer__button--next"
-        @click="onClickNext"
+        :disabled="exerciseIndex < 1"
+        @click="onClickBefore"
       >
-        >
+        &lt;
+      </button>
+      <button
+        class="board-panel-footer__button board-panel-footer__button--next"
+        @click="onClickNext"
+        :disabled="exerciseIndex >= exercises.length - 1"
+      >
+        &gt;
       </button>
     </div>
   </section>
@@ -120,7 +130,7 @@ export default defineComponent({
     ...mapState(["answerArray", "exerciseIndex"]),
   },
   methods: {
-    ...mapActions(["newAnswer", "nextExercise"]),
+    ...mapActions(["newAnswer", "nextExercise", "beforeExercise"]),
     onClickMethod(method) {
       this.element = "";
       this.element2 = "";
@@ -175,6 +185,7 @@ export default defineComponent({
             const currentExercise = exercises[this.exerciseIndex].initialArray;
 
             currentExercise.push(this.element);
+
             this.newAnswer(currentExercise);
             this.clear();
           }
@@ -203,7 +214,9 @@ export default defineComponent({
           if (this.element !== "iIiIiIiIiIi") {
             let currentExercise = exercises[this.exerciseIndex].initialArray;
 
-            currentExercise = currentExercise.find((item) => item.name === this.element.name);
+            currentExercise = currentExercise.find(
+              (item) => item.name === this.element.name
+            );
 
             this.newAnswer(currentExercise);
             this.clear();
@@ -255,6 +268,11 @@ export default defineComponent({
       this.clear();
       this.newAnswer(exercises[this.exerciseIndex].initialArray);
       this.nextExercise();
+    },
+    onClickBefore() {
+      this.clear();
+      this.newAnswer(exercises[this.exerciseIndex].initialArray);
+      this.beforeExercise();
     },
   },
 });
@@ -313,6 +331,13 @@ export default defineComponent({
     &--image {
       margin-bottom: -7px;
     }
+  }
+  &__instructions {
+    padding: 30px;
+    font-size: 20px;
+    text-align: center;
+    line-height: 25px;
+    font-weight: lighter;
   }
   &-footer__buttons {
     position: absolute;

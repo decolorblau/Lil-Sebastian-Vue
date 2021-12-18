@@ -9,14 +9,20 @@
           width="100"
           height="100"
         />
-        <img class="logo__letters" src="@/assets/letrasli-marron.png" alt="lil sebastian" />
+        <img
+          class="logo__letters"
+          src="@/assets/letrasli-marron.png"
+          alt="lil sebastian"
+        />
       </div>
     </header>
     <div class="container">
       <router-view />
     </div>
     <footer>
-      <p>Created by Lil Sebastian team (Charles-babbage)</p>
+      <p class="footer__text">
+        Created by Lil Sebastian team (Charles-babbage)
+      </p>
     </footer>
   </div>
 </template>
@@ -36,7 +42,6 @@
   align-items: center;
   background-color: #d8e2dc;
   color: #4a261c;
-
 }
 .logo {
   &__image {
@@ -58,10 +63,12 @@ header {
 }
 
 footer {
-  width: 100%;
+  width: 100vw;
   height: 30px;
-  display: fle;
+  display: flex;
   justify-content: center;
+  align-items: center;
+  font-family: monospace;
 }
 
 .container {
