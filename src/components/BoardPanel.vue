@@ -1,62 +1,123 @@
+
+
 <template>
   <section class="board-panel">
     <div class="board-panel-header">
       <div class="board-panel-header__methods">
-
-        <button class="board-panel-header__button-method" @click="onClickMethod('filter')">
+        <button
+          class="board-panel-header__button-method"
+          @click="onClickMethod('filter')"
+        >
           .filter
         </button>
-        <button class="board-panel-header__button-method" @click="onClickMethod('push')">
+        <button
+          class="board-panel-header__button-method"
+          @click="onClickMethod('push')"
+        >
           .find
         </button>
-        <button class="board-panel-header__button-method" @click="onClickMethod('map')">
+        <button
+          class="board-panel-header__button-method"
+          @click="onClickMethod('map')"
+        >
           .map
         </button>
-        <button class="board-panel-header__button-method" @click="onClickMethod('push')">
+        <button
+          class="board-panel-header__button-method"
+          @click="onClickMethod('push')"
+        >
           .pop
         </button>
-        <button class="board-panel-header__button-method" @click="onClickMethod('push')">
+        <button
+          class="board-panel-header__button-method"
+          @click="onClickMethod('push')"
+        >
           .push
         </button>
       </div>
       <div class="board-panel-header__elements">
-        <button class="board-panel-header__button" @click="onClickElement('carrot')">
-          <img class="board-panel-header__image" src="../assets/carrot.png" alt="carrot" />
+        <button
+          class="board-panel-header__button"
+          @click="onClickElement('carrot')"
+        >
+          <img
+            class="board-panel-header__image"
+            src="../assets/carrot.png"
+            alt="carrot"
+          />
         </button>
-        <button class="board-panel-header__button" @click="onClickElement('hay')">
-          <img class="board-panel-header__image" src="../assets/hay.png" alt="hay" />
+        <button
+          class="board-panel-header__button"
+          @click="onClickElement('hay')"
+        >
+          <img
+            class="board-panel-header__image"
+            src="../assets/hay.png"
+            alt="hay"
+          />
         </button>
-        <button class="board-panel-header__button" @click="onClickElement('horseshoe')">
-          <img class="board-panel-header__image" src="../assets/horseshoe.png" alt="hay" />
+        <button
+          class="board-panel-header__button"
+          @click="onClickElement('horseshoe')"
+        >
+          <img
+            class="board-panel-header__image"
+            src="../assets/horseshoe.png"
+            alt="hay"
+          />
         </button>
-        <button class="board-panel-header__button" @click="onClickElement('hair-comb')">
-          <img class="board-panel-header__image" src="../assets/hair-comb.png" alt="hair-comb" />
+        <button
+          class="board-panel-header__button"
+          @click="onClickElement('hair-comb')"
+        >
+          <img
+            class="board-panel-header__image"
+            src="../assets/hair-comb.png"
+            alt="hair-comb"
+          />
         </button>
-        <button class="board-panel-header__button" @click="onClickElement('hairComb')">
+        <button
+          class="board-panel-header__button"
+          @click="onClickElement('hairComb')"
+        >
           HAIRCOMB
         </button>
 
         <div class="board-panel-header__divider">||</div>
 
-        <button class="board-panel-header__button" @click="onClickElement2('carrot')">
+        <button
+          class="board-panel-header__button"
+          @click="onClickElement2('carrot')"
+        >
           CARROT
         </button>
-        <button class="board-panel-header__button" @click="onClickElement2('hay')">HAY</button>
-        <button class="board-panel-header__button" @click="onClickElement2('horseshoe')">
-
+        <button
+          class="board-panel-header__button"
+          @click="onClickElement2('hay')"
+        >
+          HAY
+        </button>
+        <button
+          class="board-panel-header__button"
+          @click="onClickElement2('horseshoe')"
+        >
           HORSESHOE
         </button>
-        <button class="board-panel-header__button" @click="onClickElement2('hairComb')">
+        <button
+          class="board-panel-header__button"
+          @click="onClickElement2('hairComb')"
+        >
           HAIRCOMB
         </button>
       </div>
     </div>
 
-
-    <p class="board-panel__user-input">Data: {{ this.method }}{{ this.element }}</p>
+    <p class="board-panel__user-input">
+      Data: {{ this.method }}{{ this.element }}
+    </p>
     <p>Resultado: {{ this.answerArray }}</p>
 
-    <p>La pista</p>
+    <p>{{ exercises[this.exerciseIndex].instructions }}</p>
 
     <div class="board-panel-footer__buttons">
       <button
@@ -64,7 +125,6 @@
         @click="onClickClear"
       >
         clear
-
       </button>
       <button
         class="board-panel-footer__button board-panel-footer__button--next"
@@ -89,6 +149,7 @@ export default defineComponent({
       method: "",
       element: "",
       element2: "",
+      exercises,
     };
   },
   computed: {
@@ -148,7 +209,9 @@ export default defineComponent({
           if (this.element !== "iIiIiIiIiIi") {
             let currentExercise = exercises[this.exerciseIndex].initialArray;
 
-            currentExercise = currentExercise.filter((item) => item.name === this.element.name);
+            currentExercise = currentExercise.filter(
+              (item) => item.name === this.element.name
+            );
             this.newAnswer(currentExercise);
           }
           break;
@@ -193,7 +256,9 @@ export default defineComponent({
           if (this.element !== "iIiIiIiIiIi") {
             let currentExercise = exercises[this.exerciseIndex].initialArray;
 
-            currentExercise = currentExercise.filter((item) => item.name === this.element.name);
+            currentExercise = currentExercise.filter(
+              (item) => item.name === this.element.name
+            );
             this.newAnswer(currentExercise);
           }
           break;
@@ -210,6 +275,9 @@ export default defineComponent({
       this.method = "";
     },
     onClickNext() {},
+  },
+  mounted() {
+    console.log(exercises);
   },
 });
 </script>
