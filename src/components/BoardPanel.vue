@@ -41,45 +41,17 @@
       </div>
       <div class="board-panel-header__elements">
         <div class="firstInput">
-          <button
-            class="board-panel-header__button"
-            @click="onClickElement('carrot')"
-          >
-            <img
-              class="board-panel-header__image"
-              src="../assets/carrot.png"
-              alt="carrot"
-            />
+          <button class="board-panel-header__button" @click="onClickElement('carrot')">
+            <img class="board-panel-header__image" src="../assets/carrot.png" alt="carrot" />
           </button>
-          <button
-            class="board-panel-header__button"
-            @click="onClickElement('hay')"
-          >
-            <img
-              class="board-panel-header__image"
-              src="../assets/hay.png"
-              alt="hay"
-            />
+          <button class="board-panel-header__button" @click="onClickElement('hay')">
+            <img class="board-panel-header__image" src="../assets/hay.png" alt="hay" />
           </button>
-          <button
-            class="board-panel-header__button"
-            @click="onClickElement('horseshoe')"
-          >
-            <img
-              class="board-panel-header__image"
-              src="../assets/horseshoe.png"
-              alt="horseshoe"
-            />
+          <button class="board-panel-header__button" @click="onClickElement('horseshoe')">
+            <img class="board-panel-header__image" src="../assets/horseshoe.png" alt="horseshoe" />
           </button>
-          <button
-            class="board-panel-header__button"
-            @click="onClickElement('hairComb')"
-          >
-            <img
-              class="board-panel-header__image"
-              src="../assets/hair-comb.png"
-              alt="hair-comb"
-            />
+          <button class="board-panel-header__button" @click="onClickElement('hairComb')">
+            <img class="board-panel-header__image" src="../assets/hair-comb.png" alt="hair-comb" />
           </button>
         </div>
         <div class="secondInput disabled">
@@ -87,41 +59,25 @@
             class="board-panel-header__button board-panel-header__button--2"
             @click="onClickElement2('carrot')"
           >
-            <img
-              class="board-panel-header__image"
-              src="../assets/carrot.png"
-              alt="carrot"
-            />
+            <img class="board-panel-header__image" src="../assets/carrot.png" alt="carrot" />
           </button>
           <button
             class="board-panel-header__button board-panel-header__button--2"
             @click="onClickElement2('hay')"
           >
-            <img
-              class="board-panel-header__image"
-              src="../assets/hay.png"
-              alt="hay"
-            />
+            <img class="board-panel-header__image" src="../assets/hay.png" alt="hay" />
           </button>
           <button
             class="board-panel-header__button board-panel-header__button--2"
             @click="onClickElement2('horseshoe')"
           >
-            <img
-              class="board-panel-header__image"
-              src="../assets/horseshoe.png"
-              alt="horseshoe"
-            />
+            <img class="board-panel-header__image" src="../assets/horseshoe.png" alt="horseshoe" />
           </button>
           <button
             class="board-panel-header__button board-panel-header__button--2"
             @click="onClickElement2('hairComb')"
           >
-            <img
-              class="board-panel-header__image"
-              src="../assets/hair-comb.png"
-              alt="hair-comb"
-            />
+            <img class="board-panel-header__image" src="../assets/hair-comb.png" alt="hair-comb" />
           </button>
         </div>
       </div>
@@ -277,9 +233,7 @@ export default defineComponent({
           if (this.element !== "iIiIiIiIiIi") {
             let currentExercise = exercises[this.exerciseIndex].initialArray;
 
-            currentExercise = currentExercise.filter(
-              (item) => item.name === this.element.name
-            );
+            currentExercise = currentExercise.filter((item) => item.name === this.element.name);
             this.newAnswer(currentExercise);
             this.clear();
           }
@@ -299,9 +253,7 @@ export default defineComponent({
           if (this.element !== "iIiIiIiIiIi") {
             let currentExercise = exercises[this.exerciseIndex].initialArray;
 
-            currentExercise = currentExercise.find(
-              (item) => item.name === this.element.name
-            );
+            currentExercise = currentExercise.find((item) => item.name === this.element.name);
 
             this.newAnswer(currentExercise);
             this.clear();
@@ -332,11 +284,7 @@ export default defineComponent({
           break;
       }
 
-      if (
-        this.method === "map" &&
-        this.element &&
-        this.element2 !== "iIiIiIiIiIi"
-      ) {
+      if (this.method === "map" && this.element && this.element2 !== "iIiIiIiIiIi") {
         let currentExercise = exercises[this.exerciseIndex].initialArray;
 
         currentExercise = currentExercise.map((item) =>
@@ -452,8 +400,8 @@ export default defineComponent({
     }
   }
   &__instructions {
-    padding: 50px 30px;
-    font-size: 20px;
+    padding: 30px 30px;
+    font-size: 16px;
     text-align: center;
     line-height: 30px;
     font-weight: lighter;
