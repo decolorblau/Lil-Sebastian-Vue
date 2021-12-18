@@ -8,6 +8,9 @@ const mutations = {
   toggleCorrect(state) {
     state.isCorrect = !state.isCorrect;
   },
+  loadInitialArray(state, payload) {
+    state.answerArray = payload;
+  },
 };
 
 export default mutations;

@@ -57,6 +57,8 @@ li {
   display: flex;
   padding: 0 10px;
   height: 100%;
+  align-items: center;
+  justify-content: center;
 
   &__image {
     width: 80px;
