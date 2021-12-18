@@ -3,43 +3,9 @@ import { carrot, horseshoe, hairComb, hay } from "./itemObjects";
 const exercises = [
   {
     method: ["push"],
-    task: "Lil Sebastian needs straw",
-    initialArray: [
-      {
-        url: "@/assets/carrot.png",
-        name: "carrot",
-      },
-      {
-        url: "@/assets/horseshoe.png",
-        name: "horseshoe",
-      },
-      {
-        url: "@/assets/hair-comb.png",
-        name: "hair-comb",
-      },
-    ],
-    expectedArray: [
-      {
-        url: "@/assets/carrot.png",
-        name: "carrot",
-      },
-      {
-        url: "@/assets/horseshoe.png",
-        name: "horseshoe",
-      },
-      {
-        url: "@/assets/hair-comb.png",
-        name: "hair-comb",
-      },
-      {
-        url: "@/assets/hay.png",
-        name: "hay",
-      },
-      {
-        url: "@/assets/carrot.png",
-        name: "carrot",
-      },
-    ],
+    task: "Lil Sebastian needs some hay",
+    initialArray: [carrot, horseshoe, hairComb],
+    expectedArray: [carrot, horseshoe, hairComb, hay],
   },
   {
     method: ["pop"],
