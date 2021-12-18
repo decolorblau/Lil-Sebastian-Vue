@@ -33,14 +33,13 @@ export default defineComponent({
   name: "Array",
   props: ["isAnswer"],
   computed: {
-    ...mapState(["exerciseIndex", "answerArray", "expectedArray", "isCorrect"]),
+    ...mapState(["exerciseIndex", "answerArray", "expectedArray"]),
   },
   methods: {
     ...mapActions(["newAnswer", "loadExpectedArray"]),
   },
   mounted() {
     this.loadExpectedArray(exercises[this.exerciseIndex].expectedArray);
-    console.log(this.expectedArray);
     this.newAnswer(exercises[this.exerciseIndex].initialArray);
   },
 });

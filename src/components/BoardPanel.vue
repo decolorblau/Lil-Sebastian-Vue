@@ -237,28 +237,25 @@ export default defineComponent({
           break;
       }
       this.elementMethod = this.method;
+      this.compareArrays();
     },
     onClickElement(element) {
       switch (element) {
         case "carrot":
           this.element = carrot;
           this.elementImage = carrot.name;
-          console.log(this.elementImage);
           break;
         case "hay":
           this.element = hay;
           this.elementImage = hay.name;
-          console.log(this.elementImage);
           break;
         case "horseshoe":
           this.element = horseshoe;
           this.elementImage = horseshoe.name;
-          console.log(this.elementImage);
           break;
         case "hairComb":
           this.element = hairComb;
           this.elementImage = hairComb.name;
-          console.log(this.elementImage);
           break;
         default:
           this.element = "";
@@ -363,6 +360,7 @@ export default defineComponent({
       this.clear();
       this.newAnswer(exercises[this.exerciseIndex].initialArray);
       this.loadExpectedArray(exercises[this.exerciseIndex].expectedArray);
+      this.toggleCorrect();
     },
     onClickBefore() {
       this.beforeExercise();
@@ -383,6 +381,15 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
+.firstInput {
+  padding-right: 20px;
+}
+
+.secondInput {
+  border-left: 1px solid black;
+  padding-left: 20px;
+}
+
 .board-panel {
   font-family: monospace;
   background-color: #ffe5d9;
