@@ -1,37 +1,25 @@
-
-
 <template>
   <section class="board-panel">
     <div class="board-panel-header">
       <div class="board-panel-header__methods">
-
         <button class="board-panel-header__button-method" @click="onClickMethod('filter')">
           .filter
         </button>
         <button class="board-panel-header__button-method" @click="onClickMethod('find')">
-
           .find
         </button>
-        <button
-          class="board-panel-header__button-method"
-          @click="onClickMethod('map')"
-        >
+        <button class="board-panel-header__button-method" @click="onClickMethod('map')">
           .map
         </button>
 
         <button class="board-panel-header__button-method" @click="onClickMethod('pop')">
-
           .pop
         </button>
-        <button
-          class="board-panel-header__button-method"
-          @click="onClickMethod('push')"
-        >
+        <button class="board-panel-header__button-method" @click="onClickMethod('push')">
           .push
         </button>
       </div>
       <div class="board-panel-header__elements">
-
         <div class="firstInput">
           <button class="board-panel-header__button" @click="onClickElement('carrot')">
             <img class="board-panel-header__image" src="../assets/carrot.png" alt="carrot" />
@@ -76,7 +64,11 @@
     </div>
 
     <p class="board-panel__user-input">Data: {{ this.method }}{{ this.element }}</p>
-
+    <<<<<<< HEAD
+    <p>Method: {{ this.method }}</p>
+    <p>Element: {{ this.element }}</p>
+    <p>Element2: {{ this.element2 }}</p>
+    ======= >>>>>>> 14259673414e40bb33022cbf20175ab81d484853
     <p>Resultado: {{ this.answerArray }}</p>
 
     <p>{{ exercises[this.exerciseIndex].instructions }}</p>
@@ -167,18 +159,22 @@ export default defineComponent({
           }
           break;
         case "filter":
-          console.log("holiiins");
           if (this.element !== "iIiIiIiIiIi") {
             let currentExercise = exercises[this.exerciseIndex].initialArray;
 
-            currentExercise = currentExercise.filter(
-              (item) => item.name === this.element.name
-            );
+            currentExercise = currentExercise.filter((item) => item.name === this.element.name);
             this.newAnswer(currentExercise);
           }
           break;
         case "map":
-          this.method = "map";
+          if (this.element2.length > 0 && this.element2 !== "iIiIiIiIiIi") {
+            let currentExercise = exercises[this.exerciseIndex].initialArray;
+
+            currentExercise = currentExercise.map((item) =>
+              item.name === this.element.name ? this.element2 : item
+            );
+            this.newAnswer(currentExercise);
+          }
           break;
         default:
           this.method = "iIiIiIiIiIi";
@@ -204,37 +200,19 @@ export default defineComponent({
           break;
       }
 
-      switch (this.method) {
-        case "push":
-          if (this.method && this.element) {
-            const currentExercise = exercises[this.exerciseIndex].initialArray;
+      if (this.method === "map" && this.element && this.element2 !== "iIiIiIiIiIi") {
+        let currentExercise = exercises[this.exerciseIndex].initialArray;
 
-            currentExercise.push(this.element);
-            this.newAnswer(currentExercise);
-          }
-          break;
-        case "filter":
-          console.log("holiiins");
-          if (this.element !== "iIiIiIiIiIi") {
-            let currentExercise = exercises[this.exerciseIndex].initialArray;
-
-            currentExercise = currentExercise.filter(
-              (item) => item.name === this.element.name
-            );
-            this.newAnswer(currentExercise);
-          }
-          break;
-        case "map":
-          this.method = "map";
-          break;
-        default:
-          this.method = "iIiIiIiIiIi";
-          break;
+        currentExercise = currentExercise.map((item) =>
+          item.name === this.element.name ? this.element2 : item
+        );
+        this.newAnswer(currentExercise);
       }
     },
     onClickClear() {
       this.element = "";
       this.method = "";
+      this.newAnswer([]);
     },
     onClickNext() {},
   },
