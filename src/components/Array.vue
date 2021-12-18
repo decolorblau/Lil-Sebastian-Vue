@@ -4,8 +4,8 @@
       <img
         :src="require(`@/assets/${element.name}.png`)"
         :alt="element.name"
-        width="60"
-        height="60"
+        width="55"
+        height="55"
       />
     </li>
     <!-- <li v-for="number in 5 - answerArray.length" :key="number.id" class="panel__image"></li> -->
@@ -58,14 +58,14 @@ li {
 
 .panel {
   display: flex;
-  padding: 0 10px;
   height: 100%;
   align-items: center;
   justify-content: center;
+  width: 337px;
 
   &__image {
-    width: 80px;
-    height: 80px;
+    width: 70px;
+    height: 70px;
     display: flex;
     align-items: center;
     justify-content: center;
