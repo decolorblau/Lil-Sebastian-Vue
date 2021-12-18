@@ -3,19 +3,21 @@
     <header>
       <div class="logo">
         <img
-          class="logo"
+          class="logo__image"
           alt="Lil Sebastian Logo"
           src="@/assets/logo.png"
           width="100"
           height="100"
         />
+        <img class="logo__letters" src="@/assets/letrasli-marron.png" alt="lil sebastian" />
       </div>
-      <h1 class="title">Lil Sebastian</h1>
     </header>
     <div class="container">
       <router-view />
     </div>
-    <footer></footer>
+    <footer>
+      <p>Created by Lil Sebastian team (Charles-babbage)</p>
+    </footer>
   </div>
 </template>
 
@@ -29,31 +31,44 @@
 #app {
   height: 100vh;
   width: 100vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #d8e2dc;
   color: #4a261c;
+
 }
 .logo {
-  border-radius: 50px;
-  margin-left: 50px;
+  &__image {
+    margin-right: 20px;
+    border-radius: 50px;
+  }
+  &__letters {
+    width: 220px;
+    height: auto;
+  }
 }
 
 header {
-  height: 100px;
-  width: 100%;
-  background-color: #d8e2dc;
+  height: 120px;
+  width: 1050px;
   display: flex;
+  align-items: center;
+  padding: 20px 0 10px;
 }
 
 footer {
   width: 100%;
-  height: 50px;
-  background-color: #d8e2dc;
+  height: 30px;
+  display: fle;
+  justify-content: center;
 }
 
 .container {
-  background-color: #d8e2dc;
   height: calc(100vh - 150px);
   display: flex;
-  justify-content: center;
-  padding: 50px;
+  justify-content: space-between;
+  padding: 50px 0;
+  width: 1050px;
 }
 </style>

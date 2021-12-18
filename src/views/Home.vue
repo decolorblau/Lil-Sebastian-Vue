@@ -61,6 +61,7 @@ p {
   height: 100%;
   width: 500px;
   margin: 0 50px;
+  border-radius: 10px;
   display: flex;
   flex-direction: column;
   justify-content: center;
