@@ -35,30 +35,41 @@ import { defineComponent } from "vue";
 export default defineComponent({
   name: "BoardPanel",
   data() {
-    return {};
+    return {
+      method: "",
+      element: "",
+    };
   },
   methods: {
     onClickMethod(method) {
       switch (method) {
         case "push":
+          this.method = "push";
           break;
         case "filter":
+          this.method = "filter";
           break;
         case "map":
+          this.method = "map";
           break;
         default:
+          this.method = "iIiIiIiIiIi";
           break;
       }
     },
     onClickElement(element) {
       switch (element) {
         case "carrot":
+          this.element = "carrot";
           break;
         case "hay":
+          this.element = "hay";
           break;
         case "horseshoe":
+          this.element = "horseshoe";
           break;
         default:
+          this.element = "iIiIiIiIiIi";
           break;
       }
     },
