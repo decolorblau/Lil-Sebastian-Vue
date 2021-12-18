@@ -66,9 +66,11 @@ footer {
   width: 100vw;
   height: 30px;
   display: flex;
+  padding-bottom: 20px;
   justify-content: center;
   align-items: center;
   font-family: monospace;
+  font-size: 20px;
 }
 
 .container {
