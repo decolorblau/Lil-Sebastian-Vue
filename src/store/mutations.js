@@ -6,7 +6,6 @@ const mutations = {
     state.exerciseIndex -= 1;
   },
   newAnswer(state, payload) {
-    console.log(payload);
     state.answerArray = [...payload];
   },
   toggleCorrect(state) {
