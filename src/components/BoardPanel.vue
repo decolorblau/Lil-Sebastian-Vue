@@ -2,79 +2,36 @@
   <section class="board-panel">
     <div class="board-panel-header">
       <div class="board-panel-header__methods">
-        <button
-          class="board-panel-header__button-method"
-          @click="onClickMethod('filter')"
-        >
+        <button class="board-panel-header__button-method" @click="onClickMethod('filter')">
           .filter
         </button>
-        <button
-          class="board-panel-header__button-method"
-          @click="onClickMethod('find')"
-        >
+        <button class="board-panel-header__button-method" @click="onClickMethod('find')">
           .find
         </button>
-        <button
-          class="board-panel-header__button-method"
-          @click="onClickMethod('map')"
-        >
+        <button class="board-panel-header__button-method" @click="onClickMethod('map')">
           .map
         </button>
 
-        <button
-          class="board-panel-header__button-method"
-          @click="onClickMethod('pop')"
-        >
+        <button class="board-panel-header__button-method" @click="onClickMethod('pop')">
           .pop
         </button>
-        <button
-          class="board-panel-header__button-method"
-          @click="onClickMethod('push')"
-        >
+        <button class="board-panel-header__button-method" @click="onClickMethod('push')">
           .push
         </button>
       </div>
       <div class="board-panel-header__elements">
         <div class="firstInput">
-          <button
-            class="board-panel-header__button"
-            @click="onClickElement('carrot')"
-          >
-            <img
-              class="board-panel-header__image"
-              src="../assets/carrot.png"
-              alt="carrot"
-            />
+          <button class="board-panel-header__button" @click="onClickElement('carrot')">
+            <img class="board-panel-header__image" src="../assets/carrot.png" alt="carrot" />
           </button>
-          <button
-            class="board-panel-header__button"
-            @click="onClickElement('hay')"
-          >
-            <img
-              class="board-panel-header__image"
-              src="../assets/hay.png"
-              alt="hay"
-            />
+          <button class="board-panel-header__button" @click="onClickElement('hay')">
+            <img class="board-panel-header__image" src="../assets/hay.png" alt="hay" />
           </button>
-          <button
-            class="board-panel-header__button"
-            @click="onClickElement('horseshoe')"
-          >
-            <img
-              class="board-panel-header__image"
-              src="../assets/horseshoe.png"
-              alt="horseshoe"
-            />
+          <button class="board-panel-header__button" @click="onClickElement('horseshoe')">
+            <img class="board-panel-header__image" src="../assets/horseshoe.png" alt="horseshoe" />
           </button>
-          <button
-            class="board-panel-header__button"
-            @click="onClickElement('hairComb')"
-          >
-            <img
-              class="board-panel-header__image"
-              src="../assets/hair-comb.png"
-              alt="hair-comb"
-            />
+          <button class="board-panel-header__button" @click="onClickElement('hairComb')">
+            <img class="board-panel-header__image" src="../assets/hair-comb.png" alt="hair-comb" />
           </button>
         </div>
         <div class="secondInput disabled">
@@ -82,51 +39,35 @@
             class="board-panel-header__button board-panel-header__button--2"
             @click="onClickElement2('carrot')"
           >
-            <img
-              class="board-panel-header__image"
-              src="../assets/carrot.png"
-              alt="carrot"
-            />
+            <img class="board-panel-header__image" src="../assets/carrot.png" alt="carrot" />
           </button>
           <button
             class="board-panel-header__button board-panel-header__button--2"
             @click="onClickElement2('hay')"
           >
-            <img
-              class="board-panel-header__image"
-              src="../assets/hay.png"
-              alt="hay"
-            />
+            <img class="board-panel-header__image" src="../assets/hay.png" alt="hay" />
           </button>
           <button
             class="board-panel-header__button board-panel-header__button--2"
             @click="onClickElement2('horseshoe')"
           >
-            <img
-              class="board-panel-header__image"
-              src="../assets/horseshoe.png"
-              alt="horseshoe"
-            />
+            <img class="board-panel-header__image" src="../assets/horseshoe.png" alt="horseshoe" />
           </button>
           <button
             class="board-panel-header__button board-panel-header__button--2"
             @click="onClickElement2('hairComb')"
           >
-            <img
-              class="board-panel-header__image"
-              src="../assets/hair-comb.png"
-              alt="hair-comb"
-            />
+            <img class="board-panel-header__image" src="../assets/hair-comb.png" alt="hair-comb" />
           </button>
         </div>
       </div>
     </div>
 
     <p class="board-panel__user-input">
-      console : lilArray.{{ this.method }}(<img
-        v-if="this.element.name"
+      Data: lilArray.{{ this.elementMethod }}(<img
+        v-if="this.elementImage !== ''"
         class="board-panel__user-input--image"
-        :src="require(`@/assets/${this.element.name}.png`)"
+        :src="require(`@/assets/${this.elementImage}.png`)"
         :alt="this.element.name"
         width="30"
         height="30"
@@ -182,6 +123,8 @@ export default defineComponent({
       method: "",
       element: "",
       element2: "",
+      elementImage: "",
+      elementMethod: "",
       exercises,
     };
   },
@@ -193,6 +136,8 @@ export default defineComponent({
     onClickMethod(method) {
       this.element = "";
       this.element2 = "";
+      this.elementImage = "";
+      this.elementMethod = "";
       let currentExercise;
 
       switch (method) {
@@ -206,6 +151,7 @@ export default defineComponent({
           this.method = "map";
           break;
         case "pop":
+          this.method = "pop";
           currentExercise = [...exercises[this.exerciseIndex].initialArray];
           currentExercise.pop();
           this.newAnswer(currentExercise);
@@ -218,23 +164,32 @@ export default defineComponent({
           this.method = "iIiIiIiIiIi";
           break;
       }
+      this.elementMethod = this.method;
     },
     onClickElement(element) {
       switch (element) {
         case "carrot":
           this.element = carrot;
+          this.elementImage = carrot.name;
+          console.log(this.elementImage);
           break;
         case "hay":
           this.element = hay;
+          this.elementImage = hay.name;
+          console.log(this.elementImage);
           break;
         case "horseshoe":
           this.element = horseshoe;
+          this.elementImage = horseshoe.name;
+          console.log(this.elementImage);
           break;
         case "hairComb":
           this.element = hairComb;
+          this.elementImage = hairComb.name;
+          console.log(this.elementImage);
           break;
         default:
-          this.element = "iIiIiIiIiIi";
+          this.element = "";
           break;
       }
 
@@ -253,9 +208,7 @@ export default defineComponent({
           if (this.element !== "iIiIiIiIiIi") {
             let currentExercise = exercises[this.exerciseIndex].initialArray;
 
-            currentExercise = currentExercise.filter(
-              (item) => item.name === this.element.name
-            );
+            currentExercise = currentExercise.filter((item) => item.name === this.element.name);
             this.newAnswer(currentExercise);
             this.clear();
           }
@@ -275,16 +228,14 @@ export default defineComponent({
           if (this.element !== "iIiIiIiIiIi") {
             let currentExercise = exercises[this.exerciseIndex].initialArray;
 
-            currentExercise = currentExercise.find(
-              (item) => item.name === this.element.name
-            );
+            currentExercise = currentExercise.find((item) => item.name === this.element.name);
 
             this.newAnswer(currentExercise);
             this.clear();
           }
           break;
         default:
-          this.method = "iIiIiIiIiIi";
+          this.method = "";
           break;
       }
     },
@@ -303,15 +254,11 @@ export default defineComponent({
           this.element2 = hairComb;
           break;
         default:
-          this.element2 = "iIiIiIiIiIi";
+          this.element2 = "";
           break;
       }
 
-      if (
-        this.method === "map" &&
-        this.element &&
-        this.element2 !== "iIiIiIiIiIi"
-      ) {
+      if (this.method === "map" && this.element && this.element2 !== "iIiIiIiIiIi") {
         let currentExercise = exercises[this.exerciseIndex].initialArray;
 
         currentExercise = currentExercise.map((item) =>
