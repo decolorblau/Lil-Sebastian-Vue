@@ -2,20 +2,42 @@
   <section class="board-panel">
     <div class="board-panel-header">
       <div class="board-panel-header__methods">
-        <button class="board-panel-header__button-method" @click="onClickMethod('filter')">
+
+        <button
+          class="board-panel-header__button-method"
+          @click="onClickMethod('filter'), (activeBtn = 'filter')"
+          :class="{ active: activeBtn === 'filter' }"
+        >
           .filter
         </button>
-        <button class="board-panel-header__button-method" @click="onClickMethod('find')">
+        <button
+          class="board-panel-header__button-method"
+          @click="onClickMethod('find'), (activeBtn = 'find')"
+          :class="{ active: activeBtn === 'find' }"
+        >
           .find
         </button>
-        <button class="board-panel-header__button-method" @click="onClickMethod('map')">
+        <button
+          class="board-panel-header__button-method"
+          @click="onClickMethod('map'), (activeBtn = 'map')"
+          :class="{ active: activeBtn === 'map' }"
+        >
           .map
         </button>
 
-        <button class="board-panel-header__button-method" @click="onClickMethod('pop')">
+        <button
+          class="board-panel-header__button-method"
+          @click="onClickMethod('pop'), (activeBtn = 'pop')"
+          :class="{ active: activeBtn === 'pop' }"
+        >
           .pop
         </button>
-        <button class="board-panel-header__button-method" @click="onClickMethod('push')">
+        <button
+          class="board-panel-header__button-method"
+          @click="onClickMethod('push'), (activeBtn = 'push')"
+          :class="{ active: activeBtn === 'push' }"
+        >
+
           .push
         </button>
       </div>
@@ -64,10 +86,10 @@
     </div>
 
     <p class="board-panel__user-input">
-      Data: lilArray.{{ this.method }}(<img
-        v-if="this.element.name"
+      Data: lilArray.{{ this.elementMethod }}(<img
+        v-if="this.elementImage !== ''"
         class="board-panel__user-input--image"
-        :src="require(`@/assets/${this.element.name}.png`)"
+        :src="require(`@/assets/${this.elementImage}.png`)"
         :alt="this.element.name"
         width="30"
         height="30"
@@ -79,7 +101,9 @@
     <p>Element2: {{ this.element2 }}</p>
     <p>Resultado: {{ this.answerArray }}</p>
 
-    <p>{{ exercises[this.exerciseIndex].instructions }}</p>
+    <p class="board-panel__instructions">
+      {{ exercises[this.exerciseIndex].instructions }}
+    </p>
     <p>La pista</p>
     <p>{{ this.exercises[this.exerciseIndex].initialArray }}</p>
 
@@ -121,17 +145,31 @@ export default defineComponent({
       method: "",
       element: "",
       element2: "",
+      elementImage: "",
+      elementMethod: "",
       exercises,
+      isActive: false,
+      activeBtn: "",
     };
   },
   computed: {
+
     ...mapState(["answerArray", "exerciseIndex", "isCorrect"]),
+
+    activeClass() {
+      return {
+        active: this.isActive,
+      };
+    },
+
   },
   methods: {
     ...mapActions(["newAnswer", "nextExercise", "beforeExercise", "toggleCorrect"]),
     onClickMethod(method) {
       this.element = "";
       this.element2 = "";
+      this.elementImage = "";
+      this.elementMethod = "";
       let currentExercise;
 
       switch (method) {
@@ -145,6 +183,7 @@ export default defineComponent({
           this.method = "map";
           break;
         case "pop":
+          this.method = "pop";
           currentExercise = [...exercises[this.exerciseIndex].initialArray];
           currentExercise.pop();
           this.newAnswer(currentExercise);
@@ -157,23 +196,32 @@ export default defineComponent({
           this.method = "iIiIiIiIiIi";
           break;
       }
+      this.elementMethod = this.method;
     },
     onClickElement(element) {
       switch (element) {
         case "carrot":
           this.element = carrot;
+          this.elementImage = carrot.name;
+          console.log(this.elementImage);
           break;
         case "hay":
           this.element = hay;
+          this.elementImage = hay.name;
+          console.log(this.elementImage);
           break;
         case "horseshoe":
           this.element = horseshoe;
+          this.elementImage = horseshoe.name;
+          console.log(this.elementImage);
           break;
         case "hairComb":
           this.element = hairComb;
+          this.elementImage = hairComb.name;
+          console.log(this.elementImage);
           break;
         default:
-          this.element = "iIiIiIiIiIi";
+          this.element = "";
           break;
       }
 
@@ -219,7 +267,7 @@ export default defineComponent({
           }
           break;
         default:
-          this.method = "iIiIiIiIiIi";
+          this.method = "";
           break;
       }
       this.compareArrays();
@@ -239,7 +287,7 @@ export default defineComponent({
           this.element2 = hairComb;
           break;
         default:
-          this.element2 = "iIiIiIiIiIi";
+          this.element2 = "";
           break;
       }
 
@@ -316,6 +364,10 @@ export default defineComponent({
       font-family: inherit;
       color: inherit;
       margin: 10px;
+
+      &.active {
+        background: #996538;
+      }
     }
 
     &__button {
@@ -339,6 +391,13 @@ export default defineComponent({
     &--image {
       margin-bottom: -7px;
     }
+  }
+  &__instructions {
+    padding: 30px;
+    font-size: 20px;
+    text-align: center;
+    line-height: 25px;
+    font-weight: lighter;
   }
   &-footer__buttons {
     position: absolute;
