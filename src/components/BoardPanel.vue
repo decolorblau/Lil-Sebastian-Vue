@@ -309,12 +309,14 @@ export default defineComponent({
       this.newAnswer(exercises[this.exerciseIndex].initialArray);
       this.loadExpectedArray(exercises[this.exerciseIndex].expectedArray);
       this.toggleCorrect();
+      this.activeBtn = "";
     },
     onClickBefore() {
       this.beforeExercise();
       this.clear();
       this.newAnswer(exercises[this.exerciseIndex].initialArray);
       this.loadExpectedArray(exercises[this.exerciseIndex].expectedArray);
+      this.toggleCorrect();
     },
     compareArrays() {
       if (
