@@ -1,6 +1,6 @@
 <template>
   <section class="board-panel">
-    <header class="board-panel-header">
+    <div class="board-panel-header">
       <div class="board-panel-header__methods">
         <button class="board-panel-header__button" @click="onClickMethod('push')">PUSH</button>
         <button class="board-panel-header__button" @click="onClickMethod('filter')">FILTER</button>
@@ -13,11 +13,11 @@
           HORSESHOE
         </button>
       </div>
-    </header>
-    <p class="board-panel__user-input" />
+    </div>
+    <p class="board-panel__user-input">array.map(cosas)</p>
     <p>La pista</p>
 
-    <footer>
+    <div>
       <button class="board-panel-footer__button" @click="onClickClear">CLEAR</button>
       <button
         class="board-panel-footer__button board-panel-footer__button--next"
@@ -25,7 +25,7 @@
       >
         ->
       </button>
-    </footer>
+    </div>
   </section>
 </template>
 
@@ -79,4 +79,17 @@ export default defineComponent({
 });
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.board-panel {
+  background-color: #fff;
+  height: 100%;
+  width: 500px;
+  margin: 0 50px;
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  &-header,
+  &-header__methods {
+    border-bottom: black 2px solid;
+  }
+}
+</style>
