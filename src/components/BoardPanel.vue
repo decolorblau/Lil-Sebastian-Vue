@@ -2,6 +2,7 @@
   <section class="board-panel">
     <div class="board-panel-header">
       <div class="board-panel-header__methods">
+
         <button
           class="board-panel-header__button-method"
           @click="onClickMethod('filter'), (activeBtn = 'filter')"
@@ -36,6 +37,7 @@
           @click="onClickMethod('push'), (activeBtn = 'push')"
           :class="{ active: activeBtn === 'push' }"
         >
+
           .push
         </button>
       </div>
@@ -122,7 +124,7 @@
       <button
         class="board-panel-footer__button board-panel-footer__button--next"
         @click="onClickNext"
-        :disabled="exerciseIndex >= exercises.length - 1"
+        :class="{ disabled: !isCorrect }"
       >
         &gt;
       </button>
@@ -151,16 +153,18 @@ export default defineComponent({
     };
   },
   computed: {
-    ...mapState(["answerArray", "exerciseIndex"]),
+
+    ...mapState(["answerArray", "exerciseIndex", "isCorrect"]),
 
     activeClass() {
       return {
         active: this.isActive,
       };
     },
+
   },
   methods: {
-    ...mapActions(["newAnswer", "nextExercise", "beforeExercise", "loadExpectedArray"]),
+    ...mapActions(["newAnswer", "nextExercise", "beforeExercise", "loadExpectedArray", "toggleCorrect"]),
     onClickMethod(method) {
       this.element = "";
       this.element2 = "";
@@ -266,6 +270,7 @@ export default defineComponent({
           this.method = "";
           break;
       }
+      this.compareArrays();
     },
     onClickElement2(element) {
       switch (element) {
@@ -298,6 +303,7 @@ export default defineComponent({
     },
     clear() {
       this.element = "";
+      this.element2 = "";
       this.method = "";
     },
     onClickClear() {
@@ -316,6 +322,14 @@ export default defineComponent({
       this.newAnswer(exercises[this.exerciseIndex].initialArray);
       this.loadExpectedArray(exercises[this.exerciseIndex].expectedArray);
     },
+    compareArrays() {
+      if (
+        JSON.stringify(this.answerArray) ===
+        JSON.stringify(this.exercises[this.exerciseIndex].expectedArray)
+      ) {
+        this.toggleCorrect();
+      }
+    },
   },
 });
 </script>
@@ -331,6 +345,11 @@ export default defineComponent({
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   position: relative;
   color: #4a261c;
+  .disabled {
+    opacity: 0.3;
+    user-select: none;
+    cursor: default;
+  }
   &-header {
     display: flex;
     flex-direction: column;
@@ -353,9 +372,7 @@ export default defineComponent({
         background: #996538;
       }
     }
-    .disabled {
-      opacity: 0.3;
-    }
+
     &__button {
       border: none;
       background-color: transparent;
@@ -399,6 +416,7 @@ export default defineComponent({
     padding: 10px;
     background-color: #d8e2dc;
     border-radius: 50px;
+    cursor: pointer;
   }
 }
 </style>

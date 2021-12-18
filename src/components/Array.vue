@@ -33,7 +33,7 @@ export default defineComponent({
   name: "Array",
   props: ["isAnswer"],
   computed: {
-    ...mapState(["exerciseIndex", "answerArray", "expectedArray"]),
+    ...mapState(["exerciseIndex", "answerArray", "expectedArray", "isCorrect"]),
   },
   methods: {
     ...mapActions(["newAnswer", "loadExpectedArray"]),
