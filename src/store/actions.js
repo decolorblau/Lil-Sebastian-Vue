@@ -11,6 +11,9 @@ const actions = {
   newAnswer({ commit }, newArray) {
     commit("newAnswer", newArray);
   },
+  loadExpectedArray({ commit }, expectedArray) {
+    commit("expectedArray", expectedArray);
+  },
 };
 
 export default actions;

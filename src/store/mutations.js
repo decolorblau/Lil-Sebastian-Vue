@@ -11,6 +11,9 @@ const mutations = {
   toggleCorrect(state) {
     state.isCorrect = !state.isCorrect;
   },
+  expectedArray(state, payload) {
+    state.expectedArray = [...payload];
+  },
 };
 
 export default mutations;
