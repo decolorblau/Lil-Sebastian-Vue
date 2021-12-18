@@ -3,17 +3,19 @@
     <div class="board-panel-header">
       <div class="board-panel-header__methods">
         <button class="board-panel-header__button-method" @click="onClickMethod('filter')">
-          FILTER
+          .filter
         </button>
         <button class="board-panel-header__button-method" @click="onClickMethod('push')">
-          FIND
+          .find
         </button>
-        <button class="board-panel-header__button-method" @click="onClickMethod('map')">MAP</button>
-        <button class="board-panel-header__button-method" @click="onClickMethod('push')">
-          POP
+        <button class="board-panel-header__button-method" @click="onClickMethod('map')">
+          .map
         </button>
         <button class="board-panel-header__button-method" @click="onClickMethod('push')">
-          PUSH
+          .pop
+        </button>
+        <button class="board-panel-header__button-method" @click="onClickMethod('push')">
+          .push
         </button>
       </div>
       <div class="board-panel-header__elements">
@@ -35,13 +37,18 @@
 
     <p>La pista</p>
 
-    <div>
-      <button class="board-panel-footer__button" @click="onClickClear">CLEAR</button>
+    <div class="board-panel-footer__buttons">
+      <button
+        class="board-panel-footer__button board-panel-footer__button--clear"
+        @click="onClickClear"
+      >
+        clear
+      </button>
       <button
         class="board-panel-footer__button board-panel-footer__button--next"
         @click="onClickNext"
       >
-        ->
+        >
       </button>
     </div>
   </section>
@@ -123,33 +130,60 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 .board-panel {
-  background-color: #fff;
+  font-family: monospace;
+  background-color: #ffe5d9;
   height: 100%;
   width: 500px;
-  margin: 0 50px;
+  margin: 0 auto;
   border-radius: 10px;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  position: relative;
   &-header {
-  display: flex;
-  flex-direction: column;
-  border-bottom: black 2px solid;
-  &__button-method {
-    width: 100px;
-    height: 40px;
-    background-color: white;
+    display: flex;
+    flex-direction: column;
+    &__elements {
+      background-color: #f8edeb;
+    }
+    &__button-method {
+      width: 80px;
+      height: 40px;
+      background-color: #fec89a;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      font-family: inherit;
+      margin: 10px;
+    }
+    &__button {
+      border: none;
+      background-color: transparent;
+      cursor: pointer;
+      margin: 10px;
+    }
+    &__image {
+      width: 35px;
+      height: 35px;
+    }
+  }
+  &__user-input {
+    background-color: #f8edeb;
+    margin: 20px;
+    padding: 20px;
+    font-size: 20px;
+  }
+  &-footer__buttons {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+  }
+  &-footer__button {
     border: none;
-    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+    margin-left: 10px;
+    font-family: inherit;
+    font-size: 20px;
+    padding: 10px;
+    background-color: #d8e2dc;
     border-radius: 50px;
-    cursor: pointer;
-  }
-  &__button {
-    border: none;
-    background-color: transparent;
-    cursor: pointer;
-  }
-  &__image {
-    width: 40px;
-    height: 40px;}
   }
 }
 </style>
