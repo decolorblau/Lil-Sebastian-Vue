@@ -206,22 +206,18 @@ export default defineComponent({
         case "carrot":
           this.element = carrot;
           this.elementImage = carrot.name;
-          console.log(this.elementImage);
           break;
         case "hay":
           this.element = hay;
           this.elementImage = hay.name;
-          console.log(this.elementImage);
           break;
         case "horseshoe":
           this.element = horseshoe;
           this.elementImage = horseshoe.name;
-          console.log(this.elementImage);
           break;
         case "hairComb":
           this.element = hairComb;
           this.elementImage = hairComb.name;
-          console.log(this.elementImage);
           break;
         default:
           this.element = "";
@@ -339,6 +335,15 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
+.firstInput {
+  padding-right: 20px;
+}
+
+.secondInput {
+  border-left: 1px solid black;
+  padding-left: 20px;
+}
+
 .board-panel {
   font-family: monospace;
   background-color: #ffe5d9;
