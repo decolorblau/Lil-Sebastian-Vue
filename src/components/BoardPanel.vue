@@ -242,6 +242,7 @@ export default defineComponent({
             const currentExercise = exercises[this.exerciseIndex].initialArray;
 
             currentExercise.push(this.element);
+
             this.newAnswer(currentExercise);
             this.clear();
           }

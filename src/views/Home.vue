@@ -17,23 +17,12 @@
 </template>
 
 <script>
-import { mapActions, mapState } from "vuex";
 import BoardPanel from "@/components/BoardPanel.vue";
 import Array from "@/components/Array.vue";
-import exercises from "@/utils/exercises";
 
 export default {
   name: "Home",
   components: { BoardPanel, Array },
-  computed: {
-    ...mapState(["exerciseIndex"]),
-  },
-  methods: {
-    ...mapActions(["loadInitialArray"]),
-  },
-  mounted() {
-    this.loadInitialArray(exercises[this.exerciseIndex].initialArray);
-  },
 };
 </script>
 

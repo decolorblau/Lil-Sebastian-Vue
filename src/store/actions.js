@@ -11,9 +11,6 @@ const actions = {
   newAnswer({ commit }, newArray) {
     commit("newAnswer", newArray);
   },
-  loadInitialArray({ commit }, initialArray) {
-    commit("loadInitialArray", initialArray);
-  },
 };
 
 export default actions;
