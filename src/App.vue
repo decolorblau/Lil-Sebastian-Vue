@@ -1,7 +1,15 @@
 <template>
   <div id="app">
     <header>
-      <img class="logo" alt="Lil Sebastian Logo" src="@/assets/logo.png" width="100" height="100" />
+      <div class="logo">
+        <img
+          class="logo"
+          alt="Lil Sebastian Logo"
+          src="@/assets/logo.png"
+          width="100"
+          height="100"
+        />
+      </div>
       <h1 class="title">Lil Sebastian</h1>
     </header>
     <div class="container">
@@ -22,25 +30,29 @@
   height: 100vh;
   width: 100vw;
 }
+.logo {
+  border-radius: 50px;
+  margin-left: 50px;
+}
 
 header {
   height: 100px;
   width: 100%;
-  background-color: blue;
+  background-color: #d8e2dc;
   display: flex;
 }
 
 footer {
   width: 100%;
   height: 50px;
-  background-color: yellow;
+  background-color: #d8e2dc;
 }
 
 .container {
-  background-color: orange;
+  background-color: #d8e2dc;
   height: calc(100vh - 150px);
   display: flex;
-  flex-direction: row;
+  justify-content: center;
   padding: 50px;
 }
 </style>
