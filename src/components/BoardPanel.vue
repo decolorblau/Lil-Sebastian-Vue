@@ -14,7 +14,7 @@
         </button>
       </div>
     </header>
-    <p class="board-panel__user-input" />
+    <p class="board-panel__user-input">{{ this.method }} {{ this.element }}</p>
     <p>La pista</p>
 
     <footer>
@@ -45,6 +45,7 @@ export default defineComponent({
       switch (method) {
         case "push":
           this.method = "push";
+
           break;
         case "filter":
           this.method = "filter";
