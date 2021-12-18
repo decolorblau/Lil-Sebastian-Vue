@@ -123,7 +123,7 @@
     </div>
 
     <p class="board-panel__user-input">
-      Data: lilArray.{{ this.method }}(<img
+      console : lilArray.{{ this.method }}(<img
         v-if="this.element.name"
         class="board-panel__user-input--image"
         :src="require(`@/assets/${this.element.name}.png`)"
@@ -138,7 +138,9 @@
     <p>Element2: {{ this.element2 }}</p>
     <p>Resultado: {{ this.answerArray }}</p>
 
-    <p>{{ exercises[this.exerciseIndex].instructions }}</p>
+    <p class="board-panel__instructions">
+      {{ exercises[this.exerciseIndex].instructions }}
+    </p>
     <p>La pista</p>
     <p>{{ this.exercises[this.exerciseIndex].initialArray }}</p>
 
@@ -264,7 +266,9 @@ export default defineComponent({
           if (this.element !== "iIiIiIiIiIi") {
             let currentExercise = exercises[this.exerciseIndex].initialArray;
 
-            currentExercise = currentExercise.find((item) => item.name === this.element.name);
+            currentExercise = currentExercise.find(
+              (item) => item.name === this.element.name
+            );
 
             this.newAnswer(currentExercise);
             this.clear();
@@ -378,6 +382,13 @@ export default defineComponent({
     &--image {
       margin-bottom: -7px;
     }
+  }
+  &__instructions {
+    padding: 30px;
+    font-size: 20px;
+    text-align: center;
+    line-height: 25px;
+    font-weight: lighter;
   }
   &-footer__buttons {
     position: absolute;
