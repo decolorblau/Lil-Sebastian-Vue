@@ -11,6 +11,7 @@
         <button class="board-panel-header__button-method" @click="onClickMethod('map')">
           .map
         </button>
+
         <button class="board-panel-header__button-method" @click="onClickMethod('pop')">
           .pop
         </button>
@@ -63,12 +64,14 @@
     </div>
 
     <p class="board-panel__user-input">Data: {{ this.method }}{{ this.element }}</p>
+    <<<<<<< HEAD
     <p>Method: {{ this.method }}</p>
     <p>Element: {{ this.element }}</p>
     <p>Element2: {{ this.element2 }}</p>
+    ======= >>>>>>> 14259673414e40bb33022cbf20175ab81d484853
     <p>Resultado: {{ this.answerArray }}</p>
 
-    <p>La pista</p>
+    <p>{{ exercises[this.exerciseIndex].instructions }}</p>
 
     <div class="board-panel-footer__buttons">
       <button
@@ -100,6 +103,7 @@ export default defineComponent({
       method: "",
       element: "",
       element2: "",
+      exercises,
     };
   },
   computed: {
@@ -211,6 +215,9 @@ export default defineComponent({
       this.newAnswer([]);
     },
     onClickNext() {},
+  },
+  mounted() {
+    console.log(exercises);
   },
 });
 </script>
