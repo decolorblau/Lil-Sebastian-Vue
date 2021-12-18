@@ -37,7 +37,7 @@ const exercises = [
   },
   {
     method: ["pop"],
-    task: "Lil Sebastian has eaten the carrot. Write the current array",
+    task: "Lil Sebastian has eaten the carrot. Update the array",
     initialArray: [
       {
         url: "@/assets/horseshoe.png",
@@ -73,7 +73,7 @@ const exercises = [
   },
   {
     method: ["filter"],
-    task: "It's time to eat! Take the Lil Sebastian's favourite food",
+    task: "It's time to eat! Leave only Lil Sebastian's favourite food",
     initialArray: [
       {
         url: "@/assets/straw.png",
@@ -109,7 +109,7 @@ const exercises = [
   },
   {
     method: ["find"],
-    task: "take the brush and comb Lil Sebastian",
+    task: "Take the brush and comb Lil Sebastian",
     initialArray: [
       {
         url: "@/assets/carrot.png",
