@@ -3,8 +3,12 @@
     <BoardPanel />
   </div>
   <div class="board board--viewpanel">
-    <Array array="" />
-    <Array array="" />
+    <div class="array array--answer">
+      <Array :isAnswer="true" />
+    </div>
+    <div class="array array--expected">
+      <Array :isAnswer="false" />
+    </div>
   </div>
 </template>
 
@@ -31,5 +35,14 @@ export default {
   margin: 0 50px;
   border-radius: 10px;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.array {
+  margin: 0 auto;
+  width: 400px;
+  &.array--expected {
+    border: 1px dashed black;
+    border-radius: 50px;
+  }
 }
 </style>
