@@ -13,6 +13,7 @@ export default {
 <style lang="scss">
 .board {
   width: 100%;
-  border: 1px solid black;
+  border: 2px solid black;
+  height: 100%;
 }
 </style>
