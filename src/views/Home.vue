@@ -3,6 +3,9 @@
     <BoardPanel />
   </div>
   <div class="board board--viewpanel">
+    <div class="task-container">
+      <p class="task">{{ exercises[this.exerciseIndex].task }}</p>
+    </div>
     <div class="array array--answer">
       <p>[</p>
       <div>
@@ -19,12 +22,23 @@
 </template>
 
 <script>
+import { mapState } from "vuex";
 import BoardPanel from "@/components/BoardPanel.vue";
 import Array from "@/components/Array.vue";
+import exercises from "@/utils/exercises";
 
 export default {
   name: "Home",
   components: { BoardPanel, Array },
+  data() {
+    return {
+      exercises,
+      task: "",
+    };
+  },
+  computed: {
+    ...mapState(["exerciseIndex"]),
+  },
 };
 </script>
 
@@ -60,6 +74,16 @@ hr {
   margin: 80px auto;
   border: none;
   border-top: 1px solid black;
+}
+.task-container {
+  height: 40px;
+  width: 450px;
+  display: flex;
+  align-items: center;
+  margin-bottom: 35px;
+}
+.task {
+  font-size: 24px;
 }
 
 .array {
