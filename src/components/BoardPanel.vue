@@ -195,7 +195,9 @@ export default defineComponent({
             let currentExercise = exercises[this.exerciseIndex].initialArray;
 
             currentExercise = currentExercise.find((item) => item.name === this.element.name);
+
             this.newAnswer(currentExercise);
+            this.clear();
           }
           break;
         default:
