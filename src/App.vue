@@ -15,6 +15,7 @@
 * {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
 
 #app {
@@ -26,20 +27,20 @@ header {
   height: 100px;
   width: 100%;
   background-color: blue;
-  position: fixed;
   display: flex;
 }
 
 footer {
-  position: fixed;
-  bottom: 0;
-  height: 50px;
   width: 100%;
+  height: 50px;
   background-color: yellow;
 }
 
 .container {
   background-color: orange;
-  height: 100%;
+  height: calc(100vh - 150px);
+  display: flex;
+  flex-direction: row;
+  padding: 50px;
 }
 </style>
