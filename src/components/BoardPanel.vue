@@ -31,6 +31,9 @@
 
 <script>
 import { defineComponent } from "vue";
+import { mapActions, mapState } from "vuex";
+import exercises from "@/utils/exercises";
+import { carrot, horseshoe, hay, hairComb } from "@/utils/itemObjects";
 
 export default defineComponent({
   name: "BoardPanel",
@@ -40,8 +43,14 @@ export default defineComponent({
       element: "",
     };
   },
+  computed: {
+    ...mapState(["answerArray", "exerciseIndex"]),
+  },
   methods: {
+    ...mapActions(["newArray"]),
     onClickMethod(method) {
+      this.element = "";
+
       switch (method) {
         case "push":
           this.method = "push";
@@ -56,25 +65,36 @@ export default defineComponent({
           this.method = "iIiIiIiIiIi";
           break;
       }
+      if (this.method && this.element) {
+        const currentExercise = exercises[this.exerciseIndex].initialArray;
+
+        if (this.method === "push") {
+          currentExercise.push(this.element);
+          this.newArray(currentExercise);
+        }
+      }
     },
     onClickElement(element) {
       switch (element) {
         case "carrot":
-          this.element = "carrot";
+          this.element = carrot;
           break;
         case "hay":
-          this.element = "hay";
+          this.element = hay;
           break;
         case "horseshoe":
-          this.element = "horseshoe";
+          this.element = horseshoe;
+          break;
+        case "hairComb":
+          this.element = hairComb;
           break;
         default:
           this.element = "iIiIiIiIiIi";
           break;
       }
     },
-    onClickClear,
-    onClickNext,
+    onClickClear() {},
+    onClickNext() {},
   },
 });
 </script>
