@@ -73,8 +73,8 @@ export default defineComponent({
           break;
       }
     },
-    onClickClear,
-    onClickNext,
+    // onClickClear,
+    // onClickNext,
   },
 });
 </script>
