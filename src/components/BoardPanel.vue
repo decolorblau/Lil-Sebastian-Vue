@@ -83,9 +83,17 @@
       </button>
       <button
         class="board-panel-footer__button board-panel-footer__button--next"
-        @click="onClickNext"
+        :disabled="exerciseIndex < 1"
+        @click="onClickBefore"
       >
-        >
+        &lt;
+      </button>
+      <button
+        class="board-panel-footer__button board-panel-footer__button--next"
+        @click="onClickNext"
+        :disabled="exerciseIndex >= exercises.length - 1"
+      >
+        &gt;
       </button>
     </div>
   </section>
@@ -111,7 +119,7 @@ export default defineComponent({
     ...mapState(["answerArray", "exerciseIndex"]),
   },
   methods: {
-    ...mapActions(["newAnswer", "nextExercise"]),
+    ...mapActions(["newAnswer", "nextExercise", "beforeExercise"]),
     onClickMethod(method) {
       this.element = "";
       this.element2 = "";
@@ -244,8 +252,13 @@ export default defineComponent({
     },
     onClickNext() {
       this.clear();
-      this.newAnswer([]);
+      this.newAnswer(exercises[this.exerciseIndex].initialArray);
       this.nextExercise();
+    },
+    onClickBefore() {
+      this.clear();
+      this.newAnswer(exercises[this.exerciseIndex].initialArray);
+      this.beforeExercise();
     },
   },
 });
