@@ -303,6 +303,7 @@ export default defineComponent({
     },
     clear() {
       this.element = "";
+      this.element2 = "";
       this.method = "";
     },
     onClickClear() {
