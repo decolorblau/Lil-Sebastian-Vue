@@ -19,17 +19,11 @@ export default {
 </script>
 
 <style lang="scss">
-.board {
-  width: 550px;
-  height: 100%;
-}
 .board--viewpanel {
-  background-color: #fff;
   height: 100%;
   min-width: 500px;
   width: 500px;
   margin: 0 50px;
   border-radius: 10px;
-  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 </style>
