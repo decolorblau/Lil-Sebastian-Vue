@@ -15,6 +15,7 @@
       </div>
     </div>
     <p class="board-panel__user-input">array.map(cosas)</p>
+
     <p>La pista</p>
 
     <div>
@@ -45,6 +46,7 @@ export default defineComponent({
       switch (method) {
         case "push":
           this.method = "push";
+
           break;
         case "filter":
           this.method = "filter";
@@ -73,7 +75,10 @@ export default defineComponent({
           break;
       }
     },
-    // onClickClear,
+    onClickClear() {
+      this.element = "";
+      this.method = "";
+    },
     // onClickNext,
   },
 });
