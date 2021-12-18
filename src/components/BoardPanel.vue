@@ -2,79 +2,36 @@
   <section class="board-panel">
     <div class="board-panel-header">
       <div class="board-panel-header__methods">
-        <button
-          class="board-panel-header__button-method"
-          @click="onClickMethod('filter')"
-        >
+        <button class="board-panel-header__button-method" @click="onClickMethod('filter')">
           .filter
         </button>
-        <button
-          class="board-panel-header__button-method"
-          @click="onClickMethod('find')"
-        >
+        <button class="board-panel-header__button-method" @click="onClickMethod('find')">
           .find
         </button>
-        <button
-          class="board-panel-header__button-method"
-          @click="onClickMethod('map')"
-        >
+        <button class="board-panel-header__button-method" @click="onClickMethod('map')">
           .map
         </button>
 
-        <button
-          class="board-panel-header__button-method"
-          @click="onClickMethod('pop')"
-        >
+        <button class="board-panel-header__button-method" @click="onClickMethod('pop')">
           .pop
         </button>
-        <button
-          class="board-panel-header__button-method"
-          @click="onClickMethod('push')"
-        >
+        <button class="board-panel-header__button-method" @click="onClickMethod('push')">
           .push
         </button>
       </div>
       <div class="board-panel-header__elements">
         <div class="firstInput">
-          <button
-            class="board-panel-header__button"
-            @click="onClickElement('carrot')"
-          >
-            <img
-              class="board-panel-header__image"
-              src="../assets/carrot.png"
-              alt="carrot"
-            />
+          <button class="board-panel-header__button" @click="onClickElement('carrot')">
+            <img class="board-panel-header__image" src="../assets/carrot.png" alt="carrot" />
           </button>
-          <button
-            class="board-panel-header__button"
-            @click="onClickElement('hay')"
-          >
-            <img
-              class="board-panel-header__image"
-              src="../assets/hay.png"
-              alt="hay"
-            />
+          <button class="board-panel-header__button" @click="onClickElement('hay')">
+            <img class="board-panel-header__image" src="../assets/hay.png" alt="hay" />
           </button>
-          <button
-            class="board-panel-header__button"
-            @click="onClickElement('horseshoe')"
-          >
-            <img
-              class="board-panel-header__image"
-              src="../assets/horseshoe.png"
-              alt="horseshoe"
-            />
+          <button class="board-panel-header__button" @click="onClickElement('horseshoe')">
+            <img class="board-panel-header__image" src="../assets/horseshoe.png" alt="horseshoe" />
           </button>
-          <button
-            class="board-panel-header__button"
-            @click="onClickElement('hairComb')"
-          >
-            <img
-              class="board-panel-header__image"
-              src="../assets/hair-comb.png"
-              alt="hair-comb"
-            />
+          <button class="board-panel-header__button" @click="onClickElement('hairComb')">
+            <img class="board-panel-header__image" src="../assets/hair-comb.png" alt="hair-comb" />
           </button>
         </div>
         <div class="secondInput disabled">
@@ -82,41 +39,25 @@
             class="board-panel-header__button board-panel-header__button--2"
             @click="onClickElement2('carrot')"
           >
-            <img
-              class="board-panel-header__image"
-              src="../assets/carrot.png"
-              alt="carrot"
-            />
+            <img class="board-panel-header__image" src="../assets/carrot.png" alt="carrot" />
           </button>
           <button
             class="board-panel-header__button board-panel-header__button--2"
             @click="onClickElement2('hay')"
           >
-            <img
-              class="board-panel-header__image"
-              src="../assets/hay.png"
-              alt="hay"
-            />
+            <img class="board-panel-header__image" src="../assets/hay.png" alt="hay" />
           </button>
           <button
             class="board-panel-header__button board-panel-header__button--2"
             @click="onClickElement2('horseshoe')"
           >
-            <img
-              class="board-panel-header__image"
-              src="../assets/horseshoe.png"
-              alt="horseshoe"
-            />
+            <img class="board-panel-header__image" src="../assets/horseshoe.png" alt="horseshoe" />
           </button>
           <button
             class="board-panel-header__button board-panel-header__button--2"
             @click="onClickElement2('hairComb')"
           >
-            <img
-              class="board-panel-header__image"
-              src="../assets/hair-comb.png"
-              alt="hair-comb"
-            />
+            <img class="board-panel-header__image" src="../assets/hair-comb.png" alt="hair-comb" />
           </button>
         </div>
       </div>
@@ -159,7 +100,7 @@
       <button
         class="board-panel-footer__button board-panel-footer__button--next"
         @click="onClickNext"
-        :disabled="exerciseIndex >= exercises.length - 1"
+        :class="{ disabled: !isCorrect }"
       >
         &gt;
       </button>
@@ -184,10 +125,10 @@ export default defineComponent({
     };
   },
   computed: {
-    ...mapState(["answerArray", "exerciseIndex"]),
+    ...mapState(["answerArray", "exerciseIndex", "isCorrect"]),
   },
   methods: {
-    ...mapActions(["newAnswer", "nextExercise", "beforeExercise"]),
+    ...mapActions(["newAnswer", "nextExercise", "beforeExercise", "toggleCorrect"]),
     onClickMethod(method) {
       this.element = "";
       this.element2 = "";
@@ -251,9 +192,7 @@ export default defineComponent({
           if (this.element !== "iIiIiIiIiIi") {
             let currentExercise = exercises[this.exerciseIndex].initialArray;
 
-            currentExercise = currentExercise.filter(
-              (item) => item.name === this.element.name
-            );
+            currentExercise = currentExercise.filter((item) => item.name === this.element.name);
             this.newAnswer(currentExercise);
             this.clear();
           }
@@ -283,6 +222,7 @@ export default defineComponent({
           this.method = "iIiIiIiIiIi";
           break;
       }
+      this.compareArrays();
     },
     onClickElement2(element) {
       switch (element) {
@@ -303,11 +243,7 @@ export default defineComponent({
           break;
       }
 
-      if (
-        this.method === "map" &&
-        this.element &&
-        this.element2 !== "iIiIiIiIiIi"
-      ) {
+      if (this.method === "map" && this.element && this.element2 !== "iIiIiIiIiIi") {
         let currentExercise = exercises[this.exerciseIndex].initialArray;
 
         currentExercise = currentExercise.map((item) =>
@@ -335,6 +271,14 @@ export default defineComponent({
       this.newAnswer(exercises[this.exerciseIndex].initialArray);
       this.beforeExercise();
     },
+    compareArrays() {
+      if (
+        JSON.stringify(this.answerArray) ===
+        JSON.stringify(this.exercises[this.exerciseIndex].expectedArray)
+      ) {
+        this.toggleCorrect();
+      }
+    },
   },
 });
 </script>
@@ -350,6 +294,11 @@ export default defineComponent({
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   position: relative;
   color: #4a261c;
+  .disabled {
+    opacity: 0.3;
+    user-select: none;
+    cursor: default;
+  }
   &-header {
     display: flex;
     flex-direction: column;
@@ -368,9 +317,7 @@ export default defineComponent({
       color: inherit;
       margin: 10px;
     }
-    .disabled {
-      opacity: 0.3;
-    }
+
     &__button {
       border: none;
       background-color: transparent;
@@ -407,6 +354,7 @@ export default defineComponent({
     padding: 10px;
     background-color: #d8e2dc;
     border-radius: 50px;
+    cursor: pointer;
   }
 }
 </style>
