@@ -1,6 +1,6 @@
 <template>
   <section class="board-panel">
-    <header class="board-panel-header">
+    <div class="board-panel-header">
       <div class="board-panel-header__methods">
         <button class="board-panel-header__button-method" @click="onClickMethod('filter')">
           FILTER
@@ -30,11 +30,12 @@
           <img class="board-panel-header__image" src="../assets/hair-comb.png" alt="hair-comb" />
         </button>
       </div>
-    </header>
-    <p class="board-panel__user-input" />
+    </div>
+    <p class="board-panel__user-input">array.map(cosas)</p>
+
     <p>La pista</p>
 
-    <footer>
+    <div>
       <button class="board-panel-footer__button" @click="onClickClear">CLEAR</button>
       <button
         class="board-panel-footer__button board-panel-footer__button--next"
@@ -42,12 +43,15 @@
       >
         ->
       </button>
-    </footer>
+    </div>
   </section>
 </template>
 
 <script>
 import { defineComponent } from "vue";
+import { mapActions, mapState } from "vuex";
+import exercises from "@/utils/exercises";
+import { carrot, horseshoe, hay, hairComb } from "@/utils/itemObjects";
 
 export default defineComponent({
   name: "BoardPanel",
@@ -57,11 +61,18 @@ export default defineComponent({
       element: "",
     };
   },
+  computed: {
+    ...mapState(["answerArray", "exerciseIndex"]),
+  },
   methods: {
+    ...mapActions(["newArray"]),
     onClickMethod(method) {
+      this.element = "";
+
       switch (method) {
         case "push":
           this.method = "push";
+
           break;
         case "filter":
           this.method = "filter";
@@ -73,33 +84,55 @@ export default defineComponent({
           this.method = "iIiIiIiIiIi";
           break;
       }
+      if (this.method && this.element) {
+        const currentExercise = exercises[this.exerciseIndex].initialArray;
+
+        if (this.method === "push") {
+          currentExercise.push(this.element);
+          this.newArray(currentExercise);
+        }
+      }
     },
     onClickElement(element) {
       switch (element) {
         case "carrot":
-          this.element = "carrot";
+          this.element = carrot;
           break;
         case "hay":
-          this.element = "hay";
+          this.element = hay;
           break;
         case "horseshoe":
-          this.element = "horseshoe";
+          this.element = horseshoe;
+          break;
+        case "hairComb":
+          this.element = hairComb;
           break;
         default:
           this.element = "iIiIiIiIiIi";
           break;
       }
     },
-    // onClickClear,
-    // onClickNext,
+    onClickClear() {
+      this.element = "";
+      this.method = "";
+    },
+    onClickNext() {},
   },
 });
 </script>
 
 <style lang="scss" scoped>
-.board-panel-header {
+.board-panel {
+  background-color: #fff;
+  height: 100%;
+  width: 500px;
+  margin: 0 50px;
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  &-header {
   display: flex;
   flex-direction: column;
+  border-bottom: black 2px solid;
   &__button-method {
     width: 100px;
     height: 40px;
@@ -116,7 +149,7 @@ export default defineComponent({
   }
   &__image {
     width: 40px;
-    height: 40px;
+    height: 40px;}
   }
 }
 </style>

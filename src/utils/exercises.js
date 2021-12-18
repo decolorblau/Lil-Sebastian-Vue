@@ -30,8 +30,8 @@ const exercises = [
         name: "hair-comb",
       },
       {
-        url: "@/assets/straw.png",
-        name: "straw",
+        url: "@/assets/hay.png",
+        name: "hay",
       },
     ],
   },
