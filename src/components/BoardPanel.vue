@@ -63,6 +63,9 @@
     </div>
 
     <p class="board-panel__user-input">Data: {{ this.method }}{{ this.element }}</p>
+    <p>Method: {{ this.method }}</p>
+    <p>Element: {{ this.element }}</p>
+    <p>Element2: {{ this.element2 }}</p>
     <p>Resultado: {{ this.answerArray }}</p>
 
     <p>La pista</p>
@@ -152,7 +155,6 @@ export default defineComponent({
           }
           break;
         case "filter":
-          console.log("holiiins");
           if (this.element !== "iIiIiIiIiIi") {
             let currentExercise = exercises[this.exerciseIndex].initialArray;
 
@@ -161,7 +163,14 @@ export default defineComponent({
           }
           break;
         case "map":
-          this.method = "map";
+          if (this.element2.length > 0 && this.element2 !== "iIiIiIiIiIi") {
+            let currentExercise = exercises[this.exerciseIndex].initialArray;
+
+            currentExercise = currentExercise.map((item) =>
+              item.name === this.element.name ? this.element2 : item
+            );
+            this.newAnswer(currentExercise);
+          }
           break;
         default:
           this.method = "iIiIiIiIiIi";
@@ -187,35 +196,19 @@ export default defineComponent({
           break;
       }
 
-      switch (this.method) {
-        case "push":
-          if (this.method && this.element) {
-            const currentExercise = exercises[this.exerciseIndex].initialArray;
+      if (this.method === "map" && this.element && this.element2 !== "iIiIiIiIiIi") {
+        let currentExercise = exercises[this.exerciseIndex].initialArray;
 
-            currentExercise.push(this.element);
-            this.newAnswer(currentExercise);
-          }
-          break;
-        case "filter":
-          console.log("holiiins");
-          if (this.element !== "iIiIiIiIiIi") {
-            let currentExercise = exercises[this.exerciseIndex].initialArray;
-
-            currentExercise = currentExercise.filter((item) => item.name === this.element.name);
-            this.newAnswer(currentExercise);
-          }
-          break;
-        case "map":
-          this.method = "map";
-          break;
-        default:
-          this.method = "iIiIiIiIiIi";
-          break;
+        currentExercise = currentExercise.map((item) =>
+          item.name === this.element.name ? this.element2 : item
+        );
+        this.newAnswer(currentExercise);
       }
     },
     onClickClear() {
       this.element = "";
       this.method = "";
+      this.newAnswer([]);
     },
     onClickNext() {},
   },
