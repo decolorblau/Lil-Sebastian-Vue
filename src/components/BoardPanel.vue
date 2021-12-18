@@ -201,8 +201,10 @@ export default defineComponent({
       "newAnswer",
       "nextExercise",
       "beforeExercise",
+      "loadExpectedArray",
       "toggleCorrect",
     ]),
+
     onClickMethod(method) {
       this.element = "";
       this.element2 = "";
@@ -349,6 +351,7 @@ export default defineComponent({
     },
     clear() {
       this.element = "";
+      this.element2 = "";
       this.method = "";
     },
     onClickClear() {
@@ -356,14 +359,16 @@ export default defineComponent({
       this.newAnswer(exercises[this.exerciseIndex].initialArray);
     },
     onClickNext() {
+      this.nextExercise();
       this.clear();
       this.newAnswer(exercises[this.exerciseIndex].initialArray);
-      this.nextExercise();
+      this.loadExpectedArray(exercises[this.exerciseIndex].expectedArray);
     },
     onClickBefore() {
+      this.beforeExercise();
       this.clear();
       this.newAnswer(exercises[this.exerciseIndex].initialArray);
-      this.beforeExercise();
+      this.loadExpectedArray(exercises[this.exerciseIndex].expectedArray);
     },
     compareArrays() {
       if (
