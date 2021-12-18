@@ -71,6 +71,8 @@
     <p>Resultado: {{ this.answerArray }}</p>
 
     <p>{{ exercises[this.exerciseIndex].instructions }}</p>
+    <p>La pista</p>
+    <p>{{ this.exercises[this.exerciseIndex].initialArray }}</p>
 
     <div class="board-panel-footer__buttons">
       <button
@@ -113,6 +115,7 @@ export default defineComponent({
     onClickMethod(method) {
       this.element = "";
       this.element2 = "";
+      let currentExercise;
 
       switch (method) {
         case "push":
@@ -124,6 +127,15 @@ export default defineComponent({
         case "map":
           this.method = "map";
           break;
+        case "pop":
+          currentExercise = [...exercises[this.exerciseIndex].initialArray];
+          currentExercise.pop();
+          this.newAnswer(currentExercise);
+          break;
+        case "find":
+          this.method = "find";
+          break;
+
         default:
           this.method = "iIiIiIiIiIi";
           break;
@@ -176,6 +188,14 @@ export default defineComponent({
             );
             this.newAnswer(currentExercise);
             this.clear();
+          }
+          break;
+        case "find":
+          if (this.element !== "iIiIiIiIiIi") {
+            let currentExercise = exercises[this.exerciseIndex].initialArray;
+
+            currentExercise = currentExercise.find((item) => item.name === this.element.name);
+            this.newAnswer(currentExercise);
           }
           break;
         default:
