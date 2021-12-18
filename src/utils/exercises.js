@@ -5,7 +5,7 @@ const exercises = [
     method: ["push"],
     task: "Lil Sebastian needs some hay",
     instructions:
-      "So you're learning Array methods for Javascript. Congratulations! You're starting an exciting path that will lead you to amazing posibilities! We'll begin by practicing the 'push' method. This method allows you to include a new item at the end of an array, regardless of its type. It returns the new length of an array. Let's try it out!",
+      "So you're learning Array methods for Javascript... Congratulations! You're starting an exciting path that will lead you to amazing posibilities! We'll begin by practicing the 'push' method. This method allows you to include a new item at the end of an array, regardless of its type. It returns the new length of an array. Let's try it out!",
     initialArray: [carrot, horseshoe, hairComb],
     expectedArray: [carrot, horseshoe, hairComb, hay],
   },
@@ -28,7 +28,7 @@ const exercises = [
   {
     method: ["find"],
     task: "Take the brush and comb Lil Sebastian",
-    introductions:
+    instructions:
       "An array can contain many elements, and sometimes we'll need to use only one of them according to a specific condition. That is when we use the method 'find'.",
     initialArray: [carrot, horseshoe, hairComb, hay],
     expectedArray: [hairComb],

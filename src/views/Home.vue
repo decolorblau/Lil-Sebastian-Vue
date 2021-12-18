@@ -5,7 +5,9 @@
   <div class="board board--viewpanel">
     <div class="array array--answer">
       <p>[</p>
-      <Array :isAnswer="true" />
+      <div>
+        <Array :isAnswer="true" />
+      </div>
       <p>]</p>
     </div>
     <hr />
@@ -28,16 +30,13 @@ export default {
 
 <style lang="scss" scoped>
 p {
-  position: absolute;
   font-size: 50px;
 
   &:nth-of-type(1) {
     top: 17px;
-    left: -8px;
   }
 
   &:nth-of-type(2) {
-    right: -8px;
     bottom: 22px;
   }
 }
@@ -67,7 +66,7 @@ hr {
   margin: 0 auto;
   height: max-content;
   width: 400px;
-  position: relative;
+  padding: 15px;
 
   &_title {
     position: absolute;
@@ -90,6 +89,9 @@ hr {
     height: 100px;
     background-color: white;
     border-radius: 15px;
+    display: flex;
+    align-items: center;
+    max-width: 400px;
   }
 }
 </style>
