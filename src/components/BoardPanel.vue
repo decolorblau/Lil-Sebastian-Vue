@@ -218,11 +218,11 @@ export default defineComponent({
     },
     onClickClear() {
       this.clear();
-      this.newAnswer([]);
+      this.newAnswer(exercises[this.exerciseIndex].initialArray);
     },
     onClickNext() {
       this.clear();
-      this.newAnswer([]);
+      this.newAnswer(exercises[this.exerciseIndex].initialArray);
       this.nextExercise();
     },
   },
